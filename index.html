@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisan Studio - Luxury Interior Design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <h1>Wisan Studio</h1>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="projects.html">Portfolio</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-overlay"></div>
+            <div class="hero-text">
+                <h2>CREATIVE, MODERN ARCHITECTURE</h2>
+                <p>Revolutionizing Spaces with Innovative Design</p>
+                <button class="cta-button">EXPLORE OUR PROJECTS</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Inspiring Spaces</h3>
+                    <p>Wisan Studio crafts innovative spaces blending function and beauty, tailored to your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h3>Our Services</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Residential Design</h4>
+                    <p>Complete home transformations that reflect your lifestyle and personality.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Commercial Spaces</h4>
+                    <p>Creating inspiring work environments that enhance productivity and well-being.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Spa & Wellness</h4>
+                    <p>Designing serene spaces for relaxation and rejuvenation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="container">
+            <h3>OUR PROJECTS</h3>
+            <div class="portfolio-gallery">
+                <div class="project-item homepage-project" onclick="window.location.href='projects.html'">
+                    <h4>Hume Luxury Wellness Club</h4>
+                    <div class="project-image">
+                        <div class="view-gallery">View Full Portfolio</div>
+                    </div>
+                </div>
+                <div class="project-item homepage-project" onclick="window.location.href='projects.html'">
+                    <h4>Joshua Tree Vacation Home</h4>
+                    <div class="project-image">
+                        <div class="view-gallery">View Full Portfolio</div>
+                    </div>
+                </div>
+                <div class="project-item homepage-project" onclick="window.location.href='projects.html'">
+                    <h4>Single Family + ADU</h4>
+                    <div class="project-image">
+                        <div class="view-gallery">View Full Portfolio</div>
+                    </div>
+                </div>
+                <div class="project-item homepage-project" onclick="window.location.href='projects.html'">
+                    <h4>Luxury Single Family Expansion</h4>
+                    <div class="project-image">
+                        <div class="view-gallery">View Full Portfolio</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Ready to transform your space? Let's discuss your vision and bring it to life.</p>
+                    <div class="contact-details">
+                        <p>Email: hello@susandesign.com</p>
+                        <p>Phone: (555) 123-4567</p>
+                        <p>Location: San Francisco, CA</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Tell us about your project" rows="5" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-overlay" id="galleryOverlay"></div>
+        <div class="gallery-content">
+            <button class="gallery-close" id="galleryClose">&times;</button>
+            <div class="gallery-header">
+                <h3 id="galleryTitle">Project Gallery</h3>
+            </div>
+            <div class="gallery-main">
+                <button class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</button>
+                <div class="gallery-image-container">
+                    <img id="galleryImage" src="" alt="Project Image">
+                    <div class="gallery-counter">
+                        <span id="galleryCounter">1 / 5</span>
+                    </div>
+                </div>
+                <button class="gallery-nav gallery-next" id="galleryNext">&#8250;</button>
+            </div>
+            <div class="gallery-thumbnails" id="galleryThumbnails">
+                <!-- Thumbnails will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Popup -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <h4>This website uses cookies.</h4>
+            <p>We use cookies to analyze website traffic and optimize your website experience. By accepting our use of cookies, your data will be aggregated with all other user data.</p>
+            <button class="accept-btn" id="acceptCookies">ACCEPT</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

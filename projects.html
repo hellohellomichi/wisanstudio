@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - Wisan Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <h1>Wisan Studio</h1>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="projects.html" class="active">Portfolio</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Projects Page -->
+    <main class="projects-page">
+        <div class="container">
+            <h1 class="page-title">OUR PROJECTS</h1>
+            
+            <div class="projects-grid">
+                <!-- Row 1 -->
+                <div class="project-card" data-project="joshua-tree">
+                    <h3>Hume Luxury Wellness Club</h3>
+                    <div class="project-image">
+                        <img src="images/projects/wellness-club.jpg" alt="Hume Luxury Wellness Club">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Private luxury wellness club immersed in the heart of Venice Beach. Blending ancient health practices with modern science for holistic well-being.</p>
+                </div>
+
+                <div class="project-card" data-project="joshua-tree">
+                    <h3>Joshua Tree Vacation Home</h3>
+                    <div class="project-image">
+                        <img src="images/projects/joshua-tree.jpg" alt="Joshua Tree Vacation Home">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Luxury Airbnb vacation home, integrating high-end indoor comforts with exceptional outdoor features, creating an immersive desert retreat.</p>
+                </div>
+
+                <div class="project-card" data-project="customized-adu">
+                    <h3>Single Family + ADU</h3>
+                    <div class="project-image">
+                        <img src="images/projects/single-family-adu.jpg" alt="Single Family + ADU">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Customized 3,800 s.f. ground up modern single-family house, plus 800 s.f. ADU, in the City of Los Angeles.</p>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="project-card" data-project="family-renovation">
+                    <h3>Luxury Single Family Expansion</h3>
+                    <div class="project-image">
+                        <img src="images/projects/luxury-expansion.jpg" alt="Luxury Single Family Expansion">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Santa Monica luxury single-family home expansion and pool house</p>
+                </div>
+
+                <div class="project-card" data-project="multi-condo">
+                    <h3>Multi-Unit Apartment</h3>
+                    <div class="project-image">
+                        <img src="images/projects/multi-apartment.jpg" alt="Multi-Unit Apartment">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>10-unit modern apartment in Hollywood</p>
+                </div>
+
+                <div class="project-card" data-project="multi-condo">
+                    <h3>Multi-Unit Condo</h3>
+                    <div class="project-image">
+                        <img src="images/projects/multi-condo.jpg" alt="Multi-Unit Condo">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>3-unit condominium in inglewood</p>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="project-card" data-project="family-renovation">
+                    <h3>Single Family Renovation</h3>
+                    <div class="project-image">
+                        <img src="images/projects/family-renovation.jpg" alt="Single Family Renovation">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Customer home renovation in Westwood</p>
+                </div>
+
+                <div class="project-card" data-project="customized-adu">
+                    <h3>Customized ADU</h3>
+                    <div class="project-image">
+                        <img src="images/projects/customized-adu.jpg" alt="Customized ADU">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Customized 800 s.f. detached ADU in Pasadena</p>
+                </div>
+
+                <div class="project-card" data-project="tenant-improvement">
+                    <h3>Tenant Improvement</h3>
+                    <div class="project-image">
+                        <img src="images/projects/tenant-improvement.jpg" alt="Tenant Improvement">
+                        <div class="image-overlay">
+                            <div class="view-gallery">View Gallery</div>
+                        </div>
+                    </div>
+                    <p>Dessert restaurant in Anaheim</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-overlay" id="galleryOverlay"></div>
+        <div class="gallery-content">
+            <button class="gallery-close" id="galleryClose">&times;</button>
+            <div class="gallery-header">
+                <h3 id="galleryTitle">Project Gallery</h3>
+            </div>
+            <div class="gallery-main">
+                <button class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</button>
+                <div class="gallery-image-container">
+                    <img id="galleryImage" src="" alt="Project Image">
+                    <div class="gallery-counter">
+                        <span id="galleryCounter">1 / 5</span>
+                    </div>
+                </div>
+                <button class="gallery-nav gallery-next" id="galleryNext">&#8250;</button>
+            </div>
+            <div class="gallery-thumbnails" id="galleryThumbnails">
+                <!-- Thumbnails will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="projects.js"></script>
+</body>
+</html>
