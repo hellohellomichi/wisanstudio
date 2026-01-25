@@ -110,11 +110,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Navbar Background on Scroll - Keep black consistently
+// Navbar Background on Scroll - Skip on index page
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
+    const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
     
-    // Keep the same black styling when scrolling
+    // Don't change background on index page
+    if (isIndexPage) {
+        return;
+    }
+    
+    // Keep the same black styling when scrolling on other pages
     if (window.scrollY > 50) {
         navbar.style.background = 'rgba(0, 0, 0, 0.95)';
         navbar.style.backdropFilter = 'blur(15px)';
@@ -210,6 +216,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Gallery Modal System
 const galleryData = {
+    'wellness-club': {
+        title: 'Hume Luxury Wellness Club',
+        images: [
+            'images/projects/wellness-club/hume.jpg',
+            'images/projects/wellness-club/hume2.jpg'
+        ]
+    },
     'joshua-tree': {
         title: 'Joshua Tree Vacation Home',
         images: [

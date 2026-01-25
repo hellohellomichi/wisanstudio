@@ -8,13 +8,670 @@
     <link rel="stylesheet" href="projects.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Projects page specific navbar styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.9) !important;
+            backdrop-filter: blur(15px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
+            padding: 0.5rem 2rem !important;
+        }
+        
+        .nav-logo img {
+            height: 100px !important;
+        }
+        
+        .nav-list a {
+            font-family: 'Poppins', sans-serif !important;
+            text-transform: uppercase !important;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        :root {
+            --background: #ffffff;
+            --text-primary: #000000;
+            --text-secondary: #999999;
+            --border-light: #f0f0f0;
+        }
+
+        .projects-page {
+            padding-top: 80px;
+        }
+
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Section */
+        .page-header {
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+            max-width: 500px;
+        }
+
+        .stats {
+            text-align: right;
+        }
+
+        .stats-number {
+            font-size: 5rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        .description {
+            max-width: 450px;
+            margin-left: auto;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Filter Navigation */
+        .filter-nav {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        /* Full Width Projects Grid Wrapper */
+        .projects-grid-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            padding: 0;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            font-weight: 600;
+        }
+
+        /* Magazine-Style Grid - Mixed Layout */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 8rem 2rem;
+            padding: 2rem 0 8rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .project-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card.hidden {
+            display: none !important;
+        }
+
+        /* Freestyle editorial layout - NO overlaps, varied positioning */
+        /* Only apply when all projects visible */
+        .project-card:not(.hidden):nth-child(1):nth-last-child(9),
+        .project-card:not(.hidden):nth-child(1):nth-last-child(9) ~ .project-card:not(.hidden):nth-child(1) {
+            grid-column: 1 / 9;
+        }
+
+        .project-card:not(.hidden):nth-child(2):nth-last-child(8) {
+            grid-column: 7 / 13;
+        }
+
+        .project-card:not(.hidden):nth-child(3):nth-last-child(7) {
+            grid-column: 2 / 10;
+        }
+
+        .project-card:not(.hidden):nth-child(4):nth-last-child(6) {
+            grid-column: 1 / 7;
+        }
+
+        .project-card:not(.hidden):nth-child(5):nth-last-child(5) {
+            grid-column: 6 / 13;
+        }
+
+        .project-card:not(.hidden):nth-child(6):nth-last-child(4) {
+            grid-column: 1 / 13;
+        }
+
+        .project-card:not(.hidden):nth-child(7):nth-last-child(3) {
+            grid-column: 1 / 8;
+        }
+
+        .project-card:not(.hidden):nth-child(8):nth-last-child(2) {
+            grid-column: 7 / 13;
+        }
+
+        .project-card:not(.hidden):nth-child(9):nth-last-child(1) {
+            grid-column: 2 / 12;
+        }
+
+        /* When filtered, use simpler layout for visible items */
+        .project-card:not(.hidden) {
+            grid-column: 1 / 13;
+            margin-top: 0;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+        }
+        
+        /* Varied image heights - magazine-style big and bold */
+        .project-card:nth-child(1) .project-image {
+            min-height: 700px;
+        }
+        
+        .project-card:nth-child(2) .project-image {
+            min-height: 650px;
+        }
+        
+        .project-card:nth-child(3) .project-image {
+            min-height: 600px;
+        }
+        
+        .project-card:nth-child(4) .project-image {
+            min-height: 720px;
+        }
+        
+        .project-card:nth-child(5) .project-image {
+            min-height: 750px;
+        }
+        
+        .project-card:nth-child(6) .project-image {
+            min-height: 630px;
+        }
+        
+        .project-card:nth-child(7) .project-image {
+            min-height: 680px;
+        }
+        
+        .project-card:nth-child(8) .project-image {
+            min-height: 710px;
+        }
+        
+        .project-card:nth-child(9) .project-image {
+            min-height: 690px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* Open Case Overlay */
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .open-case-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.4s ease;
+        }
+
+        .open-case-text .line-wrapper {
+            width: 80px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .open-case-text .animated-line {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transition: left 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .project-card:hover .animated-line {
+            left: 100%;
+        }
+
+        .project-card:hover .open-case-text {
+            transform: translateY(0);
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%, transparent 100%);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            min-height: 120px;
+        }
+
+        .project-card:hover .project-info {
+            transform: translateY(0);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-area {
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .page-container {
+                padding: 0 1.5rem;
+            }
+
+            .main-title {
+                font-size: 2.8rem;
+            }
+
+            .stats-number {
+                font-size: 4rem;
+            }
+
+            .projects-grid {
+                gap: 3rem;
+            }
+
+            /* Adjust asymmetric layout for tablets */
+            .project-card:nth-child(n) {
+                margin-top: 0 !important;
+            }
+
+            .project-card:nth-child(odd) {
+                grid-column: 1 / 8;
+            }
+
+            .project-card:nth-child(even) {
+                grid-column: 7 / 13;
+                margin-top: -3rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+                padding: 3rem 2rem 2rem;
+                z-index: 999;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                gap: 2.5rem;
+                text-align: center;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .nav-list li {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .nav-list a {
+                color: #000000 !important;
+                font-size: 1.2rem !important;
+                text-decoration: none !important;
+                font-weight: 500 !important;
+                padding: 1rem !important;
+                display: block !important;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                background: transparent;
+                text-transform: none !important;
+            }
+            
+            .nav-list a:hover,
+            .nav-list a.active {
+                background: rgba(0, 0, 0, 0.05);
+                transform: translateY(-2px);
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .stats {
+                text-align: left;
+            }
+
+            .description {
+                margin-left: 0;
+                max-width: 100%;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .stats-number {
+                font-size: 3rem;
+            }
+
+            /* Fix mobile container padding */
+            .page-container {
+                padding: 0 1rem !important;
+            }
+
+            .projects-grid-wrapper {
+                padding: 0 1rem !important;
+            }
+
+            /* Mobile colorful and uncropped images */
+            .project-image img {
+                filter: grayscale(0%) !important;
+                object-fit: contain !important;
+                object-position: center !important;
+            }
+
+            .project-image {
+                min-height: auto !important;
+                height: auto !important;
+                padding: 0 !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+
+            /* Mobile project info always visible - move outside image */
+            .project-card {
+                overflow: visible !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            .project-info {
+                position: static !important;
+                background: transparent !important;
+                transform: none !important;
+                padding: 1rem 0 !important;
+                margin: 0 !important;
+                min-height: auto !important;
+                width: 100% !important;
+                overflow: visible !important;
+                display: block !important;
+                clear: both !important;
+            }
+
+            .project-title {
+                color: var(--text-primary) !important;
+                text-shadow: none !important;
+                font-size: 1rem !important;
+                text-align: center !important;
+                margin-bottom: 0.5rem !important;
+                font-weight: 600 !important;
+                white-space: normal !important;
+                word-wrap: break-word !important;
+                overflow: visible !important;
+                width: 100% !important;
+                padding: 0 1rem !important;
+                display: block !important;
+            }
+
+            .project-area {
+                color: var(--text-secondary) !important;
+                text-shadow: none !important;
+                text-align: center !important;
+                font-size: 0.85rem !important;
+                margin: 0 !important;
+                white-space: normal !important;
+                word-wrap: break-word !important;
+                overflow: visible !important;
+                width: 100% !important;
+                padding: 0 1rem !important;
+                display: block !important;
+            }
+
+            /* Single column for mobile with no offsets to prevent cropping */
+            .project-card:nth-child(n) {
+                grid-column: 1 / 13 !important;
+                margin-top: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding: 0 !important;
+                overflow: visible !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+
+            .filter-nav {
+                gap: 1.5rem;
+            }
+
+            .filter-btn {
+                font-size: 0.8rem;
+            }
+
+            .open-case-text {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+            
+            /* Ensure hidden projects stay hidden on mobile */
+            .project-card.hidden {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-container {
+                padding: 0 1rem;
+            }
+
+            .page-header {
+                padding: 2rem 0 1.5rem;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .stats-number {
+                font-size: 2.5rem;
+            }
+
+            .filter-nav {
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                gap: 2rem;
+                padding: 2rem 0 8rem !important;
+            }
+
+            /* Ensure no margins on smaller screens */
+            .project-card:nth-child(n) {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding: 0 !important;
+            }
+
+            .project-title {
+                font-size: 0.95rem !important;
+                padding: 0 1rem !important;
+            }
+
+            .project-area {
+                font-size: 0.8rem !important;
+                padding: 0 1rem !important;
+            }
+
+            .project-image {
+                min-height: 250px;
+            }
+
+            .open-case-text {
+                font-size: 1.5rem;
+                letter-spacing: 4px;
+            }
+
+            .open-case-text .line-wrapper {
+                width: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-logo">
-            <h1>Wisan Studio</h1>
+            <a href="index.html"><img src="images/homepage/logo.png" alt="Wisan Studio"></a>
         </div>
         <div class="nav-menu" id="navMenu">
             <ul class="nav-list">
@@ -34,111 +691,214 @@
 
     <!-- Projects Page -->
     <main class="projects-page">
-        <div class="container">
-            <h1 class="page-title">OUR PROJECTS</h1>
-            
-            <div class="projects-grid">
-                <!-- Row 1 -->
-                <div class="project-card" data-project="joshua-tree">
-                    <h3>Hume Luxury Wellness Club</h3>
+        <div class="page-container">
+            <!-- Header Section -->
+            <header class="page-header">
+                <div class="header-content">
+                    <h1 class="main-title">We Create<br>Impressions</h1>
+                    <div class="stats">
+                        <div class="stats-number" id="projectCount">9</div>
+                        <div class="stats-label">Realised<br>Ideas</div>
+                    </div>
+                </div>
+                <p class="description">
+                    Our diverse portfolio showcases residential and commercial designs that unlock space potential 
+                    and focus on meticulous detail development. We create comprehensive, tailored solutions for your design needs.
+                </p>
+            </header>
+
+            <!-- Filter Navigation -->
+            <nav class="filter-nav">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="wellness">Wellness</button>
+                <button class="filter-btn" data-filter="multi-unit">Multi-Unit</button>
+            </nav>
+        </div>
+
+        <!-- Projects Grid - Magazine Style (Full Width) -->
+        <div class="projects-grid-wrapper">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Project 1 -->
+                <article class="project-card" data-category="wellness" data-project="wellness-club">
                     <div class="project-image">
-                        <img src="images/projects/wellness-club.jpg" alt="Hume Luxury Wellness Club">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <img src="images/projects/wellness-club/hume.jpg" alt="Hume Luxury Wellness Club">
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Private luxury wellness club immersed in the heart of Venice Beach. Blending ancient health practices with modern science for holistic well-being.</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Hume Luxury Wellness Club</h2>
+                        <div class="project-area">Venice Beach, CA</div>
+                    </div>
+                </article>
 
-                <div class="project-card" data-project="joshua-tree">
-                    <h3>Joshua Tree Vacation Home</h3>
+                <!-- Project 2 -->
+                <article class="project-card" data-category="residential" data-project="joshua-tree">
                     <div class="project-image">
                         <img src="images/projects/joshua-tree.jpg" alt="Joshua Tree Vacation Home">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Luxury Airbnb vacation home, integrating high-end indoor comforts with exceptional outdoor features, creating an immersive desert retreat.</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Joshua Tree Vacation Home</h2>
+                        <div class="project-area">Joshua Tree, CA</div>
+                    </div>
+                </article>
 
-                <div class="project-card" data-project="customized-adu">
-                    <h3>Single Family + ADU</h3>
+                <!-- Project 3 -->
+                <article class="project-card" data-category="residential" data-project="customized-adu">
                     <div class="project-image">
                         <img src="images/projects/single-family-adu.jpg" alt="Single Family + ADU">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Customized 3,800 s.f. ground up modern single-family house, plus 800 s.f. ADU, in the City of Los Angeles.</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Single Family + ADU</h2>
+                        <div class="project-area">3,800 SF + 800 SF ADU</div>
+                    </div>
+                </article>
 
-                <!-- Row 2 -->
-                <div class="project-card" data-project="family-renovation">
-                    <h3>Luxury Single Family Expansion</h3>
+                <!-- Project 4 -->
+                <article class="project-card" data-category="residential" data-project="family-renovation">
                     <div class="project-image">
                         <img src="images/projects/luxury-expansion.jpg" alt="Luxury Single Family Expansion">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Santa Monica luxury single-family home expansion and pool house</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Luxury Single Family Expansion</h2>
+                        <div class="project-area">Santa Monica, CA</div>
+                    </div>
+                </article>
 
-                <div class="project-card" data-project="multi-condo">
-                    <h3>Multi-Unit Apartment</h3>
+                <!-- Project 5 -->
+                <article class="project-card" data-category="multi-unit" data-project="multi-condo">
                     <div class="project-image">
                         <img src="images/projects/multi-apartment.jpg" alt="Multi-Unit Apartment">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>10-unit modern apartment in Hollywood</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Multi-Unit Apartment</h2>
+                        <div class="project-area">10 Units - Hollywood, CA</div>
+                    </div>
+                </article>
 
-                <div class="project-card" data-project="multi-condo">
-                    <h3>Multi-Unit Condo</h3>
+                <!-- Project 6 -->
+                <article class="project-card" data-category="multi-unit" data-project="multi-condo">
                     <div class="project-image">
                         <img src="images/projects/multi-condo.jpg" alt="Multi-Unit Condo">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>3-unit condominium in inglewood</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Multi-Unit Condo</h2>
+                        <div class="project-area">3 Units - Inglewood, CA</div>
+                    </div>
+                </article>
 
-                <!-- Row 3 -->
-                <div class="project-card" data-project="family-renovation">
-                    <h3>Single Family Renovation</h3>
+                <!-- Project 7 -->
+                <article class="project-card" data-category="residential" data-project="family-renovation">
                     <div class="project-image">
                         <img src="images/projects/family-renovation.jpg" alt="Single Family Renovation">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Customer home renovation in Westwood</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Single Family Renovation</h2>
+                        <div class="project-area">Westwood, CA</div>
+                    </div>
+                </article>
 
-                <div class="project-card" data-project="customized-adu">
-                    <h3>Customized ADU</h3>
+                <!-- Project 8 -->
+                <article class="project-card" data-category="residential" data-project="customized-adu">
                     <div class="project-image">
                         <img src="images/projects/customized-adu.jpg" alt="Customized ADU">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Customized 800 s.f. detached ADU in Pasadena</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Customized ADU</h2>
+                        <div class="project-area">800 SF - Pasadena, CA</div>
+                    </div>
+                </article>
 
-                <div class="project-card" data-project="tenant-improvement">
-                    <h3>Tenant Improvement</h3>
+                <!-- Project 9 -->
+                <article class="project-card" data-category="commercial" data-project="tenant-improvement">
                     <div class="project-image">
                         <img src="images/projects/tenant-improvement.jpg" alt="Tenant Improvement">
-                        <div class="image-overlay">
-                            <div class="view-gallery">View Gallery</div>
+                        <div class="project-overlay">
+                            <div class="open-case-text">
+                                <span>OPEN</span>
+                                <div class="line-wrapper">
+                                    <div class="animated-line"></div>
+                                </div>
+                                <span>CASE</span>
+                            </div>
                         </div>
                     </div>
-                    <p>Dessert restaurant in Anaheim</p>
-                </div>
+                    <div class="project-info">
+                        <h2 class="project-title">Tenant Improvement</h2>
+                        <div class="project-area">Dessert Restaurant - Anaheim, CA</div>
+                    </div>
+                </article>
             </div>
         </div>
     </main>
@@ -150,6 +910,9 @@
             <button class="gallery-close" id="galleryClose">&times;</button>
             <div class="gallery-header">
                 <h3 id="galleryTitle">Project Gallery</h3>
+                <div class="gallery-description" id="galleryDescription">
+                    <p>Project description will appear here.</p>
+                </div>
             </div>
             <div class="gallery-main">
                 <button class="gallery-nav gallery-prev" id="galleryPrev">&#8249;</button>
@@ -169,5 +932,106 @@
 
     <script src="script.js"></script>
     <script src="projects.js"></script>
+    <script>
+        // Portfolio Filter and Animation
+        class PortfolioFilter {
+            constructor() {
+                this.filterButtons = document.querySelectorAll('.filter-btn');
+                this.projectCards = document.querySelectorAll('.project-card');
+                this.projectCounter = document.getElementById('projectCount');
+                this.init();
+            }
+
+            init() {
+                this.filterButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        this.handleFilter(e.target);
+                    });
+                });
+            }
+
+            handleFilter(button) {
+                const filterValue = button.dataset.filter;
+                
+                // Update active button
+                this.filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter projects
+                let visibleCount = 0;
+                this.projectCards.forEach((card) => {
+                    const cardCategory = card.dataset.category;
+                    
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Update project counter
+                this.projectCounter.textContent = visibleCount;
+            }
+        }
+
+        // Scroll Animation Observer
+        class ScrollAnimationObserver {
+            constructor() {
+                this.cards = document.querySelectorAll('.project-card');
+                this.init();
+            }
+
+            init() {
+                const observerOptions = {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                this.cards.forEach((card, index) => {
+                    // Add stagger delay
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    observer.observe(card);
+                });
+            }
+        }
+
+        // Mobile Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Close mobile menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav-list a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Initialize the portfolio features when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new PortfolioFilter();
+            new ScrollAnimationObserver();
+        });
+    </script>
 </body>
 </html>

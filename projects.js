@@ -2,8 +2,10 @@
 const projectsGalleryData = {
     'wellness-club': {
         title: 'Hume Luxury Wellness Club',
+        description: 'A serene luxury wellness retreat featuring minimalist design, natural materials, and tranquil spa facilities. This project combines modern architecture with holistic wellness concepts to create an immersive healing environment.',
         images: [
-            'images/projects/joshua-tree/joshua.jpg'
+            'images/projects/wellness-club/hume.jpg',
+            'images/projects/wellness-club/hume2.jpg'
         ]
     },
     'joshua-tree': {
@@ -120,6 +122,17 @@ document.addEventListener('DOMContentLoaded', function() {
         currentProjectImageIndex = 0;
         
         if (galleryTitle) galleryTitle.textContent = currentProjectGallery.title;
+        
+        // Update description
+        const galleryDescription = document.getElementById('galleryDescription');
+        if (galleryDescription) {
+            if (currentProjectGallery.description) {
+                galleryDescription.innerHTML = `<p>${currentProjectGallery.description}</p>`;
+            } else {
+                galleryDescription.innerHTML = '<p>This project showcases our commitment to innovative design and quality craftsmanship. Each detail has been carefully considered to create a space that exceeds expectations.</p>';
+            }
+        }
+        
         updateProjectGalleryImage();
         createProjectThumbnails();
         
