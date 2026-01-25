@@ -436,14 +436,14 @@
             
             .nav-menu {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 right: -100%;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - 70px);
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(10px);
-                transition: all 0.3s ease;
-                padding: 3rem 2rem 2rem;
+                transition: 0.3s;
+                padding: 2rem;
                 z-index: 999;
                 border-top: 1px solid rgba(0, 0, 0, 0.1);
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -455,14 +455,9 @@
             
             .nav-list {
                 flex-direction: column;
-                gap: 2.5rem;
+                gap: 2rem;
                 text-align: center;
                 list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .nav-list li {
                 margin: 0;
                 padding: 0;
             }
@@ -673,6 +668,180 @@
             .open-case-text .line-wrapper {
                 width: 120px;
             }
+        }
+        
+        /* New Gallery Modal Styles - Extra Wide Modal with Carousel View */
+        .gallery-modal .gallery-content {
+            background: white;
+            border-radius: 0;
+            width: 98vw;
+            max-width: 1600px;
+            height: 90vh;
+        }
+        
+        .gallery-modal .gallery-header {
+            background: white;
+            color: #000000;
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .gallery-modal .gallery-header h3 {
+            color: #000000;
+            font-weight: 400;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: none;
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-modal .gallery-description p {
+            color: white;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .gallery-modal .gallery-main {
+            background: white;
+            position: relative;
+            height: calc(90vh - 200px);
+        }
+        
+        .gallery-modal .gallery-close {
+            background: rgba(0,0,0,0.1);
+            color: #000000;
+        }
+        
+        .gallery-modal .gallery-close:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .gallery-modal .gallery-nav {
+            background: rgba(0,0,0,0.1);
+            color: #000000;
+            z-index: 100;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .gallery-modal .gallery-nav:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .gallery-modal .gallery-prev {
+            left: 2rem;
+        }
+        
+        .gallery-modal .gallery-next {
+            right: 2rem;
+        }
+        
+        /* Three-Image Carousel Layout */
+        .gallery-modal .gallery-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-modal #galleryImage {
+            display: none; /* Hide original - carousel will handle display */
+        }
+        
+        .gallery-modal .gallery-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .gallery-modal .gallery-slide {
+            position: relative;
+            height: 85%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .gallery-modal .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+        
+        /* Previous slide - left side, smaller, grayscale */
+        .gallery-modal .gallery-slide.prev {
+            width: 25%;
+            opacity: 0.4;
+            transform: scale(0.8);
+            z-index: 1;
+        }
+        
+        .gallery-modal .gallery-slide.prev img {
+            filter: grayscale(100%) brightness(0.7);
+        }
+        
+        /* Active slide - center, large, full color */
+        .gallery-modal .gallery-slide.active {
+            width: 40%;
+            opacity: 1;
+            transform: scale(1);
+            z-index: 3;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-modal .gallery-slide.active img {
+            filter: none;
+        }
+        
+        /* Next slide - right side, smaller, grayscale */
+        .gallery-modal .gallery-slide.next {
+            width: 25%;
+            opacity: 0.4;
+            transform: scale(0.8);
+            z-index: 1;
+        }
+        
+        .gallery-modal .gallery-slide.next img {
+            filter: grayscale(100%) brightness(0.7);
+        }
+        
+        /* Hidden slides */
+        .gallery-modal .gallery-slide.hidden {
+            display: none;
+        }
+        
+        .gallery-modal .gallery-counter {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 10;
         }
     </style>
 </head>
@@ -1033,6 +1202,223 @@
                         navMenu.classList.remove('active');
                     });
                 });
+            }
+        });
+
+        // Three-Image Gallery Carousel
+        class ThreeImageCarousel {
+            constructor() {
+                this.currentIndex = 0;
+                this.images = [];
+                this.carousel = null;
+                this.counter = document.getElementById('galleryCounter');
+                this.prevBtn = document.getElementById('galleryPrev');
+                this.nextBtn = document.getElementById('galleryNext');
+                this.init();
+            }
+
+            init() {
+                this.prevBtn?.addEventListener('click', () => this.goToPrev());
+                this.nextBtn?.addEventListener('click', () => this.goToNext());
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    const galleryModal = document.getElementById('galleryModal');
+                    if (!galleryModal || galleryModal.style.display !== 'flex') return;
+                    
+                    if (e.key === 'ArrowLeft') this.goToPrev();
+                    if (e.key === 'ArrowRight') this.goToNext();
+                });
+            }
+
+            setImages(images) {
+                console.log('Setting carousel images:', images);
+                this.images = images || [];
+                
+                // If no images provided, use demo images for testing
+                if (this.images.length === 0) {
+                    this.images = [
+                        'images/projects/multi-condo/multi-unit.jpg',
+                        'images/projects/multi-condo/multi2.jpg',
+                        'images/projects/multi-condo/multi3.jpg',
+                        'images/projects/multi-condo/multi4.jpg',
+                        'images/projects/multi-condo/multi5.jpg'
+                    ];
+                }
+                
+                this.currentIndex = 0;
+                this.createCarousel();
+                this.updateCounter();
+                this.updateSlidePositions();
+            }
+
+            createCarousel() {
+                const imageContainer = document.querySelector('.gallery-image-container');
+                const originalImg = document.getElementById('galleryImage');
+                
+                if (!imageContainer) {
+                    console.log('Image container not found');
+                    return;
+                }
+
+                // Always hide the original image
+                if (originalImg) {
+                    originalImg.style.display = 'none';
+                }
+
+                // Remove existing carousel
+                const existingCarousel = imageContainer.querySelector('#galleryCarousel');
+                if (existingCarousel) {
+                    existingCarousel.remove();
+                }
+
+                // Create new carousel container
+                const carousel = document.createElement('div');
+                carousel.id = 'galleryCarousel';
+                carousel.className = 'gallery-carousel';
+
+                // Create slides for all images
+                this.images.forEach((imageSrc, index) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'gallery-slide';
+                    slide.setAttribute('data-index', index);
+                    
+                    const img = document.createElement('img');
+                    img.src = imageSrc;
+                    img.alt = `Project Image ${index + 1}`;
+                    img.loading = index === 0 ? 'eager' : 'lazy';
+                    
+                    // Handle image load errors
+                    img.onerror = () => {
+                        console.log(`Failed to load image: ${imageSrc}`);
+                        slide.style.display = 'none';
+                    };
+                    
+                    slide.appendChild(img);
+                    carousel.appendChild(slide);
+                });
+
+                imageContainer.appendChild(carousel);
+                this.carousel = carousel;
+                
+                console.log(`Carousel created with ${this.images.length} slides`);
+            }
+
+            updateSlidePositions() {
+                if (!this.carousel || this.images.length === 0) return;
+
+                const slides = this.carousel.querySelectorAll('.gallery-slide');
+                
+                slides.forEach((slide, index) => {
+                    // Reset all position classes
+                    slide.classList.remove('active', 'prev', 'next', 'hidden');
+                    
+                    // Apply appropriate class based on position relative to current
+                    if (index === this.currentIndex) {
+                        slide.classList.add('active');
+                    } else if (index === this.getPrevIndex()) {
+                        slide.classList.add('prev');
+                    } else if (index === this.getNextIndex()) {
+                        slide.classList.add('next');
+                    } else {
+                        slide.classList.add('hidden');
+                    }
+                });
+
+                console.log(`Carousel updated - Current: ${this.currentIndex + 1}, Prev: ${this.getPrevIndex() + 1}, Next: ${this.getNextIndex() + 1}`);
+            }
+
+            getPrevIndex() {
+                return this.currentIndex === 0 ? this.images.length - 1 : this.currentIndex - 1;
+            }
+
+            getNextIndex() {
+                return this.currentIndex === this.images.length - 1 ? 0 : this.currentIndex + 1;
+            }
+
+            goToPrev() {
+                if (this.images.length <= 1) return;
+                
+                this.currentIndex = this.getPrevIndex();
+                this.updateSlidePositions();
+                this.updateCounter();
+                console.log('Moved to previous slide:', this.currentIndex + 1);
+            }
+
+            goToNext() {
+                if (this.images.length <= 1) return;
+                
+                this.currentIndex = this.getNextIndex();
+                this.updateSlidePositions();
+                this.updateCounter();
+                console.log('Moved to next slide:', this.currentIndex + 1);
+            }
+
+            updateCounter() {
+                if (this.counter && this.images.length > 0) {
+                    this.counter.textContent = `${this.currentIndex + 1} / ${this.images.length}`;
+                }
+            }
+
+            // Public method to go to specific slide (for thumbnail integration)
+            goToSlide(index) {
+                if (index >= 0 && index < this.images.length) {
+                    this.currentIndex = index;
+                    this.updateSlidePositions();
+                    this.updateCounter();
+                    console.log('Moved to slide:', this.currentIndex + 1);
+                }
+            }
+        }
+
+        // Initialize the new carousel
+        const threeImageCarousel = new ThreeImageCarousel();
+
+        // Integration with existing gallery system
+        window.addEventListener('load', () => {
+            // Enhanced gallery modal detection
+            const galleryModal = document.getElementById('galleryModal');
+            if (galleryModal) {
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                            const isVisible = galleryModal.classList.contains('active');
+                            if (isVisible) {
+                                console.log('Gallery modal opened - initializing carousel');
+                                // Use a longer timeout to ensure the project data is loaded
+                                setTimeout(() => {
+                                    // Check multiple sources for project images
+                                    let projectImages = null;
+                                    
+                                    // Try window.currentProjectGallery first
+                                    if (window.currentProjectGallery && window.currentProjectGallery.images) {
+                                        projectImages = window.currentProjectGallery.images;
+                                        console.log('Using window.currentProjectGallery images:', projectImages);
+                                    }
+                                    // Try thumbnails as backup
+                                    else {
+                                        const thumbnails = document.querySelectorAll('#galleryThumbnails .gallery-thumbnail');
+                                        if (thumbnails.length > 0) {
+                                            projectImages = Array.from(thumbnails).map(thumb => {
+                                                const bgImage = thumb.style.backgroundImage;
+                                                return bgImage.slice(5, -2); // Remove url(" and ")
+                                            });
+                                            console.log('Using thumbnail images:', projectImages);
+                                        }
+                                    }
+                                    
+                                    if (projectImages && projectImages.length > 0) {
+                                        threeImageCarousel.setImages(projectImages);
+                                    } else {
+                                        console.log('No project images found, using demo images');
+                                        threeImageCarousel.setImages([]);
+                                    }
+                                }, 200); // Increased timeout
+                            }
+                        }
+                    });
+                });
+                observer.observe(galleryModal, { attributes: true, attributeFilter: ['class'] });
             }
         });
 

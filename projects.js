@@ -74,6 +74,10 @@ const projectsGalleryData = {
 let currentProjectGallery = null;
 let currentProjectImageIndex = 0;
 
+// Expose to window scope for carousel integration
+window.currentProjectGallery = null;
+window.projectsGalleryData = projectsGalleryData;
+
 // Projects Gallery Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the projects page
@@ -119,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!projectsGalleryData[projectKey]) return;
         
         currentProjectGallery = projectsGalleryData[projectKey];
+        window.currentProjectGallery = currentProjectGallery; // Expose for carousel
         currentProjectImageIndex = 0;
         
         if (galleryTitle) galleryTitle.textContent = currentProjectGallery.title;
