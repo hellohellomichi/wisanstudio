@@ -220,7 +220,7 @@ section {
 
 .about-text {
     text-align: center;
-    max-width: 600px;
+    max-width: 750px;
 }
 
 /* Services Section */
@@ -307,19 +307,19 @@ section {
 
 /* Homepage project specific styling */
 .homepage-project:nth-child(1) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/wellness-club/hume.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1+(2).jpg');
 }
 
 .homepage-project:nth-child(2) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/joshua-tree.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/678 Polaris Joshua Tree Airbnb/1.png');
 }
 
 .homepage-project:nth-child(3) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/single-family-adu.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/3003 Canfield SFD+ADU/1.jpg');
 }
 
 .homepage-project:nth-child(4) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/luxury-expansion.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/205 Georgina Addition+ADU/1.png');
 }
 
 .project-image:hover {

@@ -217,54 +217,73 @@ document.addEventListener('DOMContentLoaded', function() {
 // Gallery Modal System
 const galleryData = {
     'wellness-club': {
-        title: 'Hume Luxury Wellness Club',
+        title: 'Luxury Gym',
         images: [
-            'images/projects/wellness-club/hume.jpg',
-            'images/projects/wellness-club/hume2.jpg'
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1+(2).jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0172_V1.jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1+(1).jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0292_V2.jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0405_V3.jpg',
+            'images/projects/600 Main Hume Lux Gym/Women_s+Sauna.jpg'
         ]
     },
     'joshua-tree': {
-        title: 'Joshua Tree Vacation Home',
+        title: 'Joshua Tree Airbnb',
         images: [
-            'images/projects/joshua-tree/joshua.jpg',
-            'images/projects/joshua-tree/joshua2.jpg',
-            'images/projects/joshua-tree/joshua3.jpg',
-            'images/projects/joshua-tree/joshua4.jpg',
-            'images/projects/joshua-tree/joshua5.jpg'
+            'images/projects/678 Polaris Joshua Tree Airbnb/1.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/2.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/3.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/4.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/5.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/6.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/7.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/8.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/9.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/10.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/11.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/12.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/13.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/14.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/15.png',
+            'images/projects/678 Polaris Joshua Tree Airbnb/16.png'
         ]
     },
     'family-renovation': {
-        title: 'Single Family Renovation',
+        title: 'Family Renovation',
         images: [
-            'images/projects/family-renovation/singlefam.jpg',
-            'images/projects/family-renovation/singlefam2.jpg',
-            'images/projects/family-renovation/singlefam4.jpg'
+            'images/projects/2115 Kerwood Renovation/1.png',
+            'images/projects/2115 Kerwood Renovation/2.png',
+            'images/projects/2115 Kerwood Renovation/3.png',
+            'images/projects/2115 Kerwood Renovation/4.jpg'
         ]
     },
     'multi-condo': {
-        title: 'Multi-Unit Condo',
+        title: 'Duplex',
         images: [
-            'images/projects/multi-condo/multi-unit.jpg',
-            'images/projects/multi-condo/multi2.jpg',
-            'images/projects/multi-condo/multi3.jpg',
-            'images/projects/multi-condo/multi4.jpg',
-            'images/projects/multi-condo/multi5.jpg'
+            'images/projects/642 Fairview Duplex/1.png',
+            'images/projects/642 Fairview Duplex/2.png',
+            'images/projects/642 Fairview Duplex/3.png',
+            'images/projects/642 Fairview Duplex/4.png',
+            'images/projects/642 Fairview Duplex/5.png',
+            'images/projects/642 Fairview Duplex/6.png'
         ]
     },
     'customized-adu': {
         title: 'Customized ADU',
         images: [
-            'images/projects/single-family-adu/adu.jpg',
-            'images/projects/customized-adu/adu2.jpg',
-            'images/projects/customized-adu/adu3.jpg',
-            'images/projects/customized-adu/adu4.jpg'
+            'images/projects/1950 E Mountain ADU/1.jpg',
+            'images/projects/1950 E Mountain ADU/2.png',
+            'images/projects/1950 E Mountain ADU/3.png',
+            'images/projects/1950 E Mountain ADU/4.jpg',
+            'images/projects/1950 E Mountain ADU/5.png',
+            'images/projects/1950 E Mountain ADU/6.png'
         ]
     },
     'tenant-improvement': {
-        title: 'Tenant Improvement',
+        title: 'General Office TI',
         images: [
-            'images/projects/tenant-improvement/dessert.jpg',
-            'images/projects/tenant-improvement/dessert2.jpg'
+            'images/projects/1775 Lincoln TI/1.png',
+            'images/projects/1775 Lincoln TI/2.png'
         ]
     }
 };
@@ -274,6 +293,18 @@ let currentImageIndex = 0;
 
 // Gallery Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on projects page - if so, completely skip this gallery system
+    if (document.querySelector('.projects-page')) {
+        console.log('On projects page - script.js gallery disabled');
+        return;
+    }
+    
+    // Check if gallery is already initialized by projects.js
+    if (window.galleryInitialized) {
+        console.log('Gallery already initialized by projects.js, skipping script.js gallery');
+        return;
+    }
+    
     const galleryModal = document.getElementById('galleryModal');
     const galleryOverlay = document.getElementById('galleryOverlay');
     const galleryClose = document.getElementById('galleryClose');
@@ -311,9 +342,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Open gallery function
     function openGallery(projectKey) {
-        if (!galleryData[projectKey]) return;
+        // Use projects gallery data if available, otherwise use main gallery data
+        const dataSource = window.projectsGalleryData || galleryData;
+        if (!dataSource[projectKey]) return;
         
-        currentGallery = galleryData[projectKey];
+        currentGallery = dataSource[projectKey];
         currentImageIndex = 0;
         
         galleryTitle.textContent = currentGallery.title;
