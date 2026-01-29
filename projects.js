@@ -4,12 +4,12 @@ const projectsGalleryData = {
         title: 'Luxury Gym',
         description: 'A serene luxury wellness retreat featuring minimalist design, natural materials, and tranquil spa facilities. This project combines modern architecture with holistic wellness concepts to create an immersive healing environment.',
         images: [
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1+(2).jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0172_V1.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1+(1).jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0292_V2.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0405_V3.jpg',
-            'images/projects/600 Main Hume Lux Gym/Women_s+Sauna.jpg'
+            'images/projects/600 Main Hume Lux Gym/Women+Sauna.jpg'
         ]
     },
     'joshua-tree': {

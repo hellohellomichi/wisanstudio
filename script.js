@@ -219,12 +219,12 @@ const galleryData = {
     'wellness-club': {
         title: 'Luxury Gym',
         images: [
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1+(2).jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0172_V1.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1+(1).jpg',
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0292_V2.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0405_V3.jpg',
-            'images/projects/600 Main Hume Lux Gym/Women_s+Sauna.jpg'
+            'images/projects/600 Main Hume Lux Gym/Women+Sauna.jpg'
         ]
     },
     'joshua-tree': {
