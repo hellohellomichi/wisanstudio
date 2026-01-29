@@ -1,7 +1,7 @@
 // Centralized Image Configuration
 // Single source of truth for all website images
 const IMAGE_CONFIG = {
-  basePath: '../public/images/',
+  basePath: '../images/',
   
   // Homepage images
   homepage: {
