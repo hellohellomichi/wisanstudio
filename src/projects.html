@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="image-config.js"></script>
     <style>
         /* Projects page specific navbar styling */
         .navbar {
@@ -871,7 +872,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-logo">
-            <a href="index.html"><img src="images/homepage/logo.png" alt="Wisan Studio"></a>
+            <a href="index.html"><img id="logoImage" src="" alt="Wisan Studio"></a>
         </div>
         <div class="nav-menu" id="navMenu">
             <ul class="nav-list">
@@ -1448,7 +1449,41 @@
         document.addEventListener('DOMContentLoaded', () => {
             new PortfolioFilter();
             new ScrollAnimationObserver();
+            
+            // Initialize images using centralized config
+            initializeProjectsPageImages();
         });
+        
+        // Initialize all images on the projects page
+        function initializeProjectsPageImages() {
+            if (!window.ImageConfig) return;
+            
+            // Set logo image
+            const logoImage = document.getElementById('logoImage');
+            if (logoImage) {
+                logoImage.src = window.ImageConfig.getHomepageImage('logo');
+            }
+            
+            // Update project card images
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                const projectKey = card.getAttribute('data-project');
+                const img = card.querySelector('.project-image img');
+                const title = card.querySelector('.project-title');
+                const area = card.querySelector('.project-area');
+                
+                if (projectKey && window.ImageConfig) {
+                    const projectData = window.ImageConfig.getProjectData(projectKey);
+                    if (projectData && img) {
+                        img.src = window.ImageConfig.getProjectCoverImage(projectKey);
+                        
+                        // Update text content
+                        if (title) title.textContent = projectData.title;
+                        if (area) area.textContent = projectData.location;
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>

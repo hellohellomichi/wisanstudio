@@ -1,140 +1,26 @@
-// Projects Page Gallery Data
-const projectsGalleryData = {
-    'wellness-club': {
-        title: 'Luxury Gym',
-        description: 'A serene luxury wellness retreat featuring minimalist design, natural materials, and tranquil spa facilities. This project combines modern architecture with holistic wellness concepts to create an immersive healing environment.',
-        images: [
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0082_V1.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0172_V1.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0292_V2.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_0405_V3.jpg',
-            'images/projects/600 Main Hume Lux Gym/07292024_Hume_sauna.jpg'
-        ]
-    },
-    'joshua-tree': {
-        title: 'Joshua Tree Airbnb',
-        description: 'Luxury Airbnb vacation home, integrating high-end indoor comforts with exceptional outdoor features, creating an immersive desert retreat.',
-        images: [
-            'images/projects/678 Polaris Joshua Tree Airbnb/1.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/2.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/3.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/4.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/5.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/6.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/7.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/8.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/9.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/10.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/11.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/12.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/13.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/14.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/15.png',
-            'images/projects/678 Polaris Joshua Tree Airbnb/16.png'
-        ]
-    },
-    'single-family-adu': {
-        title: 'Single Family+ADU',
-        description: 'A thoughtfully designed single-family residence paired with an accessory dwelling unit. This project maximizes the potential of the property while maintaining architectural harmony between the main house and the ADU, creating additional living space and rental income potential.',
-        images: [
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_1.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_2.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_3.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_4.png',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_5.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_6.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_7.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_8.jpg',
-            'images/projects/3003 Canfield SFD+ADU/SF+ADU_9.jpg'
-        ]
-    },
-    'luxury-expansion': {
-        title: 'Expansion+ADU',
-        description: 'An elegant home expansion project featuring a modern addition and accessory dwelling unit in Santa Monica. This design seamlessly integrates contemporary architecture with the existing home, creating luxurious additional living space while respecting the neighborhood character.',
-        images: [
-            'images/projects/205 Georgina Addition+ADU/Expansion+ADU_1.png',
-            'images/projects/205 Georgina Addition+ADU/Expansion+ADU_2.jpg',
-            'images/projects/205 Georgina Addition+ADU/Expansion+ADU_3.jpg',
-            'images/projects/205 Georgina Addition+ADU/4.jpg',
-            'images/projects/205 Georgina Addition+ADU/5.jpg',
-            'images/projects/205 Georgina Addition+ADU/6.jpg',
-            'images/projects/205 Georgina Addition+ADU/7.jpg',
-            'images/projects/205 Georgina Addition+ADU/8.jpg',
-            'images/projects/205 Georgina Addition+ADU/9.jpg',
-            'images/projects/205 Georgina Addition+ADU/10.jpg'
-        ]
-    },
-    'multi-apartment': {
-        title: 'Multiple Unit Apartment',
-        description: 'A contemporary 10-unit apartment building in Hollywood that maximizes density while maintaining quality living spaces. This multi-family residential project features modern amenities and efficient layouts designed for urban living, contributing to the neighborhood\'s housing solutions.',
-        images: [
-            'images/projects/4915 Elmwood 10 unit Apartment/1.png',
-            'images/projects/4915 Elmwood 10 unit Apartment/2.png',
-            'images/projects/4915 Elmwood 10 unit Apartment/3.jpg',
-            'images/projects/4915 Elmwood 10 unit Apartment/4.jpg',
-            'images/projects/4915 Elmwood 10 unit Apartment/5.jpg'
-        ]
-    },
-    'multi-condo': {
-        title: 'Duplex',
-        description: 'A modern duplex development in Inglewood featuring two thoughtfully designed residential units. This project optimizes the site with contemporary architecture while providing quality housing options that enhance the local community and offer excellent investment potential.',
-        images: [
-            'images/projects/642 Fairview Duplex/1.png',
-            'images/projects/642 Fairview Duplex/2.png',
-            'images/projects/642 Fairview Duplex/3.png',
-            'images/projects/642 Fairview Duplex/4.png',
-            'images/projects/642 Fairview Duplex/5.png',
-            'images/projects/642 Fairview Duplex/6.png'
-        ]
-    },
-    'family-renovation': {
-        title: 'Family Renovation',
-        description: 'A comprehensive renovation project in Westwood that transforms an existing family home into a modern living space. This renovation preserves the home\'s character while updating it with contemporary amenities, improved layouts, and energy-efficient features for modern family living.',
-        images: [
-            'images/projects/2115 Kerwood Renovation/1.png',
-            'images/projects/2115 Kerwood Renovation/2.png',
-            'images/projects/2115 Kerwood Renovation/3.png',
-            'images/projects/2115 Kerwood Renovation/4.jpg'
-        ]
-    },
-    'customized-adu': {
-        title: 'Customized ADU',
-        description: 'A compact yet luxurious accessory dwelling unit in Pasadena, designed to maximize every square foot. This custom ADU features clever space-saving solutions, high-end finishes, and thoughtful design elements that create a comfortable and stylish independent living space.',
-        images: [
-            'images/projects/1950 E Mountain ADU/1.jpg',
-            'images/projects/1950 E Mountain ADU/2.png',
-            'images/projects/1950 E Mountain ADU/3.png',
-            'images/projects/1950 E Mountain ADU/4.jpg',
-            'images/projects/1950 E Mountain ADU/5.png',
-            'images/projects/1950 E Mountain ADU/6.png'
-        ]
-    },
-    'tenant-improvement': {
-        title: 'General Office TI',
-        description: 'A modern tenant improvement project in Anaheim that transforms a commercial space into a stylish dessert restaurant. This design creates an inviting atmosphere with contemporary finishes, efficient kitchen layouts, and customer-focused dining areas that enhance the culinary experience.',
-        images: [
-            'images/projects/1775 Lincoln TI/1.png',
-            'images/projects/1775 Lincoln TI/2.png'
-        ]
-    }
-};
+// Projects Page Gallery Integration with Centralized Image Configuration
+// This file handles project gallery functionality using data from image-config.js
 
 let currentProjectGallery = null;
 let currentProjectImageIndex = 0;
 
 // Expose to window scope for carousel integration
 window.currentProjectGallery = null;
-window.projectsGalleryData = projectsGalleryData;
 
 // Projects Gallery Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the projects page
     if (!document.querySelector('.projects-page')) return;
     
+    // Wait for ImageConfig to be available
+    if (!window.ImageConfig) {
+        console.error('ImageConfig not available. Make sure image-config.js is loaded first.');
+        return;
+    }
+    
     // Override the main gallery data with projects data when on projects page
-    window.galleryData = projectsGalleryData;
-    console.log('Gallery data overridden with projects data:', window.galleryData);
+    window.galleryData = window.ImageConfig.IMAGE_CONFIG.projects;
+    console.log('Gallery data overridden with centralized projects data:', window.galleryData);
     
     // Prevent script.js gallery from initializing by marking it as already initialized
     window.galleryInitialized = true;
@@ -188,14 +74,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Open gallery function
     function openProjectGallery(projectKey) {
         console.log('OpenProjectGallery called with key:', projectKey);
-        console.log('Available projects:', Object.keys(projectsGalleryData));
         
-        if (!projectsGalleryData[projectKey]) {
+        if (!window.ImageConfig) {
+            console.error('ImageConfig not available');
+            return;
+        }
+        
+        const projectData = window.ImageConfig.getProjectData(projectKey);
+        if (!projectData) {
             console.log('Project not found:', projectKey);
             return;
         }
         
-        currentProjectGallery = projectsGalleryData[projectKey];
+        // Build currentProjectGallery object with full image paths
+        currentProjectGallery = {
+            title: projectData.title,
+            description: projectData.description,
+            location: projectData.location,
+            images: window.ImageConfig.getProjectGallery(projectKey)
+        };
+        
         window.currentProjectGallery = currentProjectGallery; // Expose for carousel
         currentProjectImageIndex = 0;
         

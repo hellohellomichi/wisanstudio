@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Outfit:wght@200;300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="image-config.js"></script>
     <style>
         /* Index page specific styles - Override everything with Outfit */
         :root {
@@ -220,7 +221,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-logo">
-            <a href="index.html"><img src="images/homepage/logo.png" alt="Wisan Studio"></a>
+            <a href="index.html"><img id="logoImage" src="" alt="Wisan Studio"></a>
         </div>
         <div class="nav-menu" id="navMenu">
             <ul class="nav-list">
@@ -375,5 +376,15 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Initialize images using centralized config
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set logo image
+            const logoImage = document.getElementById('logoImage');
+            if (logoImage && window.ImageConfig) {
+                logoImage.src = window.ImageConfig.getHomepageImage('logo');
+            }
+        });
+    </script>
 </body>
 </html>

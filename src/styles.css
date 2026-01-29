@@ -151,7 +151,7 @@ p {
 /* Hero Section */
 .hero-section {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/homepage/134011769155382_.pic_hd.jpg');
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../public/images/homepage/134011769155382_.pic_hd.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -307,19 +307,19 @@ section {
 
 /* Homepage project specific styling */
 .homepage-project:nth-child(1) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../public/images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg');
 }
 
 .homepage-project:nth-child(2) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/678 Polaris Joshua Tree Airbnb/1.png');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../public/images/projects/678 Polaris Joshua Tree Airbnb/1.png');
 }
 
 .homepage-project:nth-child(3) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/3003 Canfield SFD+ADU/SF+ADU_1.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../public/images/projects/3003 Canfield SFD+ADU/SF+ADU_1.jpg');
 }
 
 .homepage-project:nth-child(4) .project-image {
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/projects/205 Georgina Addition+ADU/expansion+ADU_1.png');
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../public/images/projects/205 Georgina Addition+ADU/4.jpg');
 }
 
 .project-image:hover {
