@@ -224,7 +224,7 @@ const galleryData = {
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0292_V2.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0405_V3.jpg',
-            'images/projects/600 Main Hume Lux Gym/Women+Sauna.jpg'
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_sauna.jpg'
         ]
     },
     'joshua-tree': {

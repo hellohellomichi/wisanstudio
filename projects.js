@@ -9,7 +9,7 @@ const projectsGalleryData = {
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0235_V1.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0292_V2.jpg',
             'images/projects/600 Main Hume Lux Gym/07292024_Hume_0405_V3.jpg',
-            'images/projects/600 Main Hume Lux Gym/Women+Sauna.jpg'
+            'images/projects/600 Main Hume Lux Gym/07292024_Hume_sauna.jpg'
         ]
     },
     'joshua-tree': {
@@ -38,15 +38,15 @@ const projectsGalleryData = {
         title: 'Single Family+ADU',
         description: 'A thoughtfully designed single-family residence paired with an accessory dwelling unit. This project maximizes the potential of the property while maintaining architectural harmony between the main house and the ADU, creating additional living space and rental income potential.',
         images: [
-            'images/projects/3003 Canfield SFD+ADU/1.jpg',
-            'images/projects/3003 Canfield SFD+ADU/2.jpg',
-            'images/projects/3003 Canfield SFD+ADU/3.jpg',
-            'images/projects/3003 Canfield SFD+ADU/4.png',
-            'images/projects/3003 Canfield SFD+ADU/5.jpg',
-            'images/projects/3003 Canfield SFD+ADU/6.jpg',
-            'images/projects/3003 Canfield SFD+ADU/7.jpg',
-            'images/projects/3003 Canfield SFD+ADU/8.jpg',
-            'images/projects/3003 Canfield SFD+ADU/9.jpg'
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_1.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_2.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_3.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_4.png',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_5.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_6.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_7.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_8.jpg',
+            'images/projects/3003 Canfield SFD+ADU/SF+ADU_9.jpg'
         ]
     },
     'luxury-expansion': {
