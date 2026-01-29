@@ -50,12 +50,12 @@ const projectsGalleryData = {
         ]
     },
     'luxury-expansion': {
-        title: 'Expansion ADU',
+        title: 'Expansion+ADU',
         description: 'An elegant home expansion project featuring a modern addition and accessory dwelling unit in Santa Monica. This design seamlessly integrates contemporary architecture with the existing home, creating luxurious additional living space while respecting the neighborhood character.',
         images: [
-            'images/projects/205 Georgina Addition+ADU/1.png',
-            'images/projects/205 Georgina Addition+ADU/2.jpg',
-            'images/projects/205 Georgina Addition+ADU/3.jpg',
+            'images/projects/205 Georgina Addition+ADU/Expansion+ADU_1.png',
+            'images/projects/205 Georgina Addition+ADU/Expansion+ADU_2.jpg',
+            'images/projects/205 Georgina Addition+ADU/Expansion+ADU_3.jpg',
             'images/projects/205 Georgina Addition+ADU/4.jpg',
             'images/projects/205 Georgina Addition+ADU/5.jpg',
             'images/projects/205 Georgina Addition+ADU/6.jpg',
