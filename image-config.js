@@ -129,24 +129,34 @@ const IMAGE_CONFIG = {
 };
 
 // Helper Functions
+
+// Safe URL encoding for file paths - encodes individual path components while preserving path structure
+function encodePathComponent(component) {
+  // Only encode the component, not path separators
+  return encodeURIComponent(component);
+}
+
 function getImagePath(category, key, filename = null) {
   const config = IMAGE_CONFIG[category];
   if (!config) return null;
 
   if (category === 'homepage') {
-    return filename ? `${IMAGE_CONFIG.basePath}${encodeURI(config[filename])}` : null;
+    if (!filename || !config[filename]) return null;
+    // Split the path and encode each component separately
+    const imagePath = config[filename];
+    const pathParts = imagePath.split('/');
+    const encodedPath = pathParts.map(part => encodePathComponent(part)).join('/');
+    return `${IMAGE_CONFIG.basePath}${encodedPath}`;
   }
 
   if (category === 'projects') {
     const project = config[key];
     if (!project) return null;
 
-    if (filename) {
-      return `${IMAGE_CONFIG.basePath}projects/${encodeURI(project.folder)}/${encodeURI(filename)}`;
-    } else {
-      // Return cover image if no specific filename provided
-      return `${IMAGE_CONFIG.basePath}projects/${encodeURI(project.folder)}/${encodeURI(project.coverImage)}`;
-    }
+    const targetFile = filename || project.coverImage;
+    if (!targetFile) return null;
+
+    return `${IMAGE_CONFIG.basePath}projects/${encodePathComponent(project.folder)}/${encodePathComponent(targetFile)}`;
   }
 
   return null;
@@ -165,7 +175,7 @@ function getProjectGallery(projectKey) {
   if (!project) return [];
 
   return project.images.map(filename =>
-    `${IMAGE_CONFIG.basePath}projects/${encodeURI(project.folder)}/${encodeURI(filename)}`
+    `${IMAGE_CONFIG.basePath}projects/${encodePathComponent(project.folder)}/${encodePathComponent(filename)}`
   );
 }
 
