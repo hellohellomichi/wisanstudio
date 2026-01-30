@@ -15,7 +15,7 @@ const IMAGE_CONFIG = {
       title: 'Luxury Gym',
       description: 'A serene luxury wellness retreat featuring minimalist design, natural materials, and tranquil spa facilities. This project combines modern architecture with holistic wellness concepts to create an immersive healing environment.',
       location: 'Venice Beach, CA',
-      category: 'commercial',
+      category: 'wellness',
       folder: '600 Main Hume Lux Gym',
       coverImage: '07292024_Hume_0235_V1.jpg',
       images: [
@@ -55,7 +55,7 @@ const IMAGE_CONFIG = {
     },
     
     'luxury-expansion': {
-      title: 'Expansion ADU',
+      title: 'Expansion+ADU',
       description: 'An elegant home expansion project featuring a modern addition and accessory dwelling unit in Santa Monica. This design seamlessly integrates contemporary architecture with the existing home, creating luxurious additional living space while respecting the neighborhood character.',
       location: 'Santa Monica, CA',
       category: 'residential',
@@ -67,7 +67,7 @@ const IMAGE_CONFIG = {
     },
     
     'multi-apartment': {
-      title: 'Multiple Unit Apartment',
+      title: 'Apartment',
       description: 'A contemporary 10-unit apartment building in Hollywood that maximizes density while maintaining quality living spaces. This multi-family residential project features modern amenities and efficient layouts designed for urban living, contributing to the neighborhood\'s housing solutions.',
       location: 'Hollywood, CA',
       category: 'residential',
@@ -115,7 +115,7 @@ const IMAGE_CONFIG = {
     },
     
     'tenant-improvement': {
-      title: 'General Office TI',
+      title: 'Dessert TI',
       description: 'A modern tenant improvement project in Anaheim that transforms a commercial space into a stylish dessert restaurant. This design creates an inviting atmosphere with contemporary finishes, efficient kitchen layouts, and customer-focused dining areas that enhance the culinary experience.',
       location: 'Anaheim, CA',
       category: 'commercial',
@@ -123,6 +123,18 @@ const IMAGE_CONFIG = {
       coverImage: '1.png',
       images: [
         '1.png', '2.png'
+      ]
+    },
+
+    'general-office-ti-2': {
+      title: 'General Office TI',
+      description: 'A contemporary commercial office tenant improvement project featuring modern design elements, efficient space planning, and professional finishes. This project creates a functional and inspiring work environment with attention to both aesthetics and productivity.',
+      location: 'Los Angeles, CA',
+      category: 'commercial',
+      folder: 'General Office TI',
+      coverImage: '1.jpg',
+      images: [
+        '1.jpg', '2.jpg', '3.png', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'
       ]
     }
   }
