@@ -132,23 +132,23 @@ const IMAGE_CONFIG = {
 function getImagePath(category, key, filename = null) {
   const config = IMAGE_CONFIG[category];
   if (!config) return null;
-  
+
   if (category === 'homepage') {
-    return filename ? `${IMAGE_CONFIG.basePath}${config[filename]}` : null;
+    return filename ? `${IMAGE_CONFIG.basePath}${encodeURI(config[filename])}` : null;
   }
-  
+
   if (category === 'projects') {
     const project = config[key];
     if (!project) return null;
-    
+
     if (filename) {
-      return `${IMAGE_CONFIG.basePath}projects/${project.folder}/${filename}`;
+      return `${IMAGE_CONFIG.basePath}projects/${encodeURI(project.folder)}/${encodeURI(filename)}`;
     } else {
       // Return cover image if no specific filename provided
-      return `${IMAGE_CONFIG.basePath}projects/${project.folder}/${project.coverImage}`;
+      return `${IMAGE_CONFIG.basePath}projects/${encodeURI(project.folder)}/${encodeURI(project.coverImage)}`;
     }
   }
-  
+
   return null;
 }
 
@@ -163,9 +163,9 @@ function getProjectCoverImage(projectKey) {
 function getProjectGallery(projectKey) {
   const project = IMAGE_CONFIG.projects[projectKey];
   if (!project) return [];
-  
-  return project.images.map(filename => 
-    `${IMAGE_CONFIG.basePath}projects/${project.folder}/${filename}`
+
+  return project.images.map(filename =>
+    `${IMAGE_CONFIG.basePath}projects/${encodeURI(project.folder)}/${encodeURI(filename)}`
   );
 }
 
