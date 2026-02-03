@@ -1143,14 +1143,17 @@
             align-items: center;
             justify-content: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 8px;
-            overflow: hidden;
+            border-radius: 0;
+            overflow: visible;
+            background: white;
         }
-        
+
         .gallery-modal .gallery-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             object-position: center;
             transition: all 0.4s ease;
         }
@@ -1173,7 +1176,7 @@
             opacity: 1;
             transform: scale(1);
             z-index: 3;
-            box-shadow: 0 12px 50px rgba(0,0,0,0.25);
+            box-shadow: none;
         }
         
         .gallery-modal .gallery-slide.active img {
@@ -1589,27 +1592,62 @@
                 this.counter = document.getElementById('galleryCounter');
                 this.prevBtn = document.getElementById('galleryPrev');
                 this.nextBtn = document.getElementById('galleryNext');
+                this.autoPlayInterval = null;
+                this.autoPlayDelay = 2000; // 2 seconds between slides
                 this.init();
             }
 
             init() {
-                this.prevBtn?.addEventListener('click', () => this.goToPrev());
-                this.nextBtn?.addEventListener('click', () => this.goToNext());
-                
+                this.prevBtn?.addEventListener('click', () => {
+                    this.goToPrev();
+                    this.resetAutoPlay(); // Reset timer on manual interaction
+                });
+                this.nextBtn?.addEventListener('click', () => {
+                    this.goToNext();
+                    this.resetAutoPlay(); // Reset timer on manual interaction
+                });
+
                 // Keyboard navigation
                 document.addEventListener('keydown', (e) => {
                     const galleryModal = document.getElementById('galleryModal');
                     if (!galleryModal || galleryModal.style.display !== 'flex') return;
-                    
-                    if (e.key === 'ArrowLeft') this.goToPrev();
-                    if (e.key === 'ArrowRight') this.goToNext();
+
+                    if (e.key === 'ArrowLeft') {
+                        this.goToPrev();
+                        this.resetAutoPlay();
+                    }
+                    if (e.key === 'ArrowRight') {
+                        this.goToNext();
+                        this.resetAutoPlay();
+                    }
                 });
+            }
+
+            startAutoPlay() {
+                this.stopAutoPlay(); // Clear any existing interval
+                this.autoPlayInterval = setInterval(() => {
+                    this.goToNext();
+                }, this.autoPlayDelay);
+                console.log('Auto-play started');
+            }
+
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                    console.log('Auto-play stopped');
+                }
+            }
+
+            resetAutoPlay() {
+                this.stopAutoPlay();
+                this.startAutoPlay();
             }
 
             setImages(images) {
                 console.log('Setting carousel images:', images);
                 this.images = images || [];
-                
+
                 // If no images provided, use demo images for testing
                 if (this.images.length === 0) {
                     this.images = [
@@ -1620,11 +1658,12 @@
                         'images/projects/642 Fairview Duplex/5.png'
                     ];
                 }
-                
+
                 this.currentIndex = 0;
                 this.createCarousel();
                 this.updateCounter();
                 this.updateSlidePositions();
+                this.startAutoPlay(); // Start auto-play when images are loaded
             }
 
             createCarousel() {
@@ -1764,7 +1803,7 @@
                                 setTimeout(() => {
                                     // Check multiple sources for project images
                                     let projectImages = null;
-                                    
+
                                     // Try window.currentProjectGallery first
                                     if (window.currentProjectGallery && window.currentProjectGallery.images) {
                                         projectImages = window.currentProjectGallery.images;
@@ -1781,7 +1820,7 @@
                                             console.log('Using thumbnail images:', projectImages);
                                         }
                                     }
-                                    
+
                                     if (projectImages && projectImages.length > 0) {
                                         threeImageCarousel.setImages(projectImages);
                                     } else {
@@ -1789,6 +1828,10 @@
                                         threeImageCarousel.setImages([]);
                                     }
                                 }, 200); // Increased timeout
+                            } else {
+                                // Modal closed - stop auto-play
+                                console.log('Gallery modal closed - stopping auto-play');
+                                threeImageCarousel.stopAutoPlay();
                             }
                         }
                     });
