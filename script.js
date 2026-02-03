@@ -185,32 +185,58 @@ function validateContactForm(form) {
     return true;
 }
 
-// Update form submission with enhanced validation
+// Update form submission with Formspree integration
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('.contact-form form');
-    
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         if (!validateContactForm(contactForm)) {
             return;
         }
-        
+
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        
+
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         submitBtn.style.opacity = '0.7';
-        
-        // Simulate API call
-        setTimeout(() => {
-            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-            contactForm.reset();
+
+        // Get form data
+        const formData = new FormData(contactForm);
+
+        // Submit to Formspree
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+                contactForm.reset();
+            } else {
+                return response.json().then(data => {
+                    if (data.errors) {
+                        alert('Oops! There was a problem: ' + data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Oops! There was a problem submitting your form. Please try again.');
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Oops! There was a problem submitting your form. Please try again.');
+        })
+        .finally(() => {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
             submitBtn.style.opacity = '1';
-        }, 1500);
+        });
     });
 });
 

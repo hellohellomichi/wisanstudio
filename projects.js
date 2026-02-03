@@ -155,6 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
             thumbnail.addEventListener('click', () => {
                 currentProjectImageIndex = index;
                 updateProjectGalleryImage();
+                // Also update the carousel if it exists
+                if (window.threeImageCarousel) {
+                    window.threeImageCarousel.goToSlide(index);
+                }
             });
             
             galleryThumbnails.appendChild(thumbnail);
@@ -164,39 +168,43 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Total thumbnails created:', galleryThumbnails.children.length);
     }
     
-    // Navigation buttons
+    // Navigation buttons - DISABLED
+    // Navigation is now handled by the ThreeImageCarousel class in projects.html
+    // Keeping this code commented for reference:
+    /*
     if (galleryPrev) {
         galleryPrev.addEventListener('click', function() {
             if (!currentProjectGallery) return;
-            
-            currentProjectImageIndex = currentProjectImageIndex > 0 
-                ? currentProjectImageIndex - 1 
+
+            currentProjectImageIndex = currentProjectImageIndex > 0
+                ? currentProjectImageIndex - 1
                 : currentProjectGallery.images.length - 1;
             updateProjectGalleryImage();
         });
     }
-    
+
     if (galleryNext) {
         galleryNext.addEventListener('click', function() {
             if (!currentProjectGallery) return;
-            
-            currentProjectImageIndex = currentProjectImageIndex < currentProjectGallery.images.length - 1 
-                ? currentProjectImageIndex + 1 
+
+            currentProjectImageIndex = currentProjectImageIndex < currentProjectGallery.images.length - 1
+                ? currentProjectImageIndex + 1
                 : 0;
             updateProjectGalleryImage();
         });
     }
-    
+
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (!galleryModal || !galleryModal.classList.contains('active')) return;
-        
+
         if (e.key === 'ArrowLeft') {
             if (galleryPrev) galleryPrev.click();
         } else if (e.key === 'ArrowRight') {
             if (galleryNext) galleryNext.click();
         }
     });
+    */
 });
 
 // Mobile Navigation for Projects Page

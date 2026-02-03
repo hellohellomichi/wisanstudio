@@ -331,10 +331,12 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Tell us about your project" rows="5" required></textarea>
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+                        <input type="hidden" name="_subject" value="New contact from Wisan Studio website">
+                        <input type="hidden" name="_replyto" value="info@wisanstudio.com">
                         <button type="submit">Send Message</button>
                     </form>
                 </div>

@@ -1139,10 +1139,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* All transitions use the same duration and easing for cohesion */
+            transition: width 1.4s cubic-bezier(0.34, 0.16, 0.22, 1),
+                        opacity 1.4s cubic-bezier(0.34, 0.16, 0.22, 1),
+                        transform 1.4s cubic-bezier(0.34, 0.16, 0.22, 1),
+                        order 0s;
             border-radius: 0;
             overflow: visible;
             background: white;
+            will-change: transform, opacity, width; /* Optimize for smooth animation */
         }
 
         .gallery-modal .gallery-slide img {
@@ -1152,7 +1157,8 @@
             height: auto;
             object-fit: contain;
             object-position: center;
-            transition: all 0.4s ease;
+            transition: filter 1.4s cubic-bezier(0.34, 0.16, 0.22, 1);
+            will-change: filter; /* Optimize for smooth filter transition */
         }
         
         /* Previous slide - left side, medium size, grayscale */
@@ -1161,12 +1167,13 @@
             opacity: 0.6;
             transform: scale(0.85);
             z-index: 1;
+            order: 1; /* Position on the left */
         }
-        
+
         .gallery-modal .gallery-slide.prev img {
             filter: grayscale(100%) brightness(0.8);
         }
-        
+
         /* Active slide - center, large, full color */
         .gallery-modal .gallery-slide.active {
             width: 50%;
@@ -1174,27 +1181,30 @@
             transform: scale(1);
             z-index: 3;
             box-shadow: none;
+            order: 2; /* Position in the center */
         }
-        
+
         .gallery-modal .gallery-slide.active img {
             filter: none;
         }
-        
+
         /* Next slide - right side, medium size, grayscale */
         .gallery-modal .gallery-slide.next {
             width: 30%;
             opacity: 0.6;
             transform: scale(0.85);
             z-index: 1;
+            order: 3; /* Position on the right */
         }
-        
+
         .gallery-modal .gallery-slide.next img {
             filter: grayscale(100%) brightness(0.8);
         }
-        
+
         /* Hidden slides */
         .gallery-modal .gallery-slide.hidden {
             display: none;
+            order: 99; /* Push to the end */
         }
         
         .gallery-modal .gallery-counter {
@@ -1590,7 +1600,7 @@
                 this.prevBtn = document.getElementById('galleryPrev');
                 this.nextBtn = document.getElementById('galleryNext');
                 this.autoPlayInterval = null;
-                this.autoPlayDelay = 2000; // 2 seconds between slides
+                this.autoPlayDelay = 4000; // 4 seconds between slides (generous time for smooth 1.4s transitions)
                 this.init();
             }
 
@@ -1719,56 +1729,72 @@
                 if (!this.carousel || this.images.length === 0) return;
 
                 const slides = this.carousel.querySelectorAll('.gallery-slide');
-                
+                const prevIndex = this.getPrevIndex();
+                const nextIndex = this.getNextIndex();
+
                 slides.forEach((slide, index) => {
                     // Reset all position classes
                     slide.classList.remove('active', 'prev', 'next', 'hidden');
-                    
+
                     // Apply appropriate class based on position relative to current
                     if (index === this.currentIndex) {
                         slide.classList.add('active');
-                    } else if (index === this.getPrevIndex()) {
+                    } else if (index === prevIndex) {
                         slide.classList.add('prev');
-                    } else if (index === this.getNextIndex()) {
+                    } else if (index === nextIndex) {
                         slide.classList.add('next');
                     } else {
                         slide.classList.add('hidden');
                     }
                 });
 
-                console.log(`Carousel updated - Current: ${this.currentIndex + 1}, Prev: ${this.getPrevIndex() + 1}, Next: ${this.getNextIndex() + 1}`);
+                console.log(`Carousel updated - Current: ${this.currentIndex + 1} (index ${this.currentIndex}), Prev: ${prevIndex + 1} (index ${prevIndex}), Next: ${nextIndex + 1} (index ${nextIndex})`);
             }
 
             getPrevIndex() {
-                return this.currentIndex === 0 ? this.images.length - 1 : this.currentIndex - 1;
+                // Loop back to last image when on first image
+                const prevIdx = this.currentIndex === 0 ? this.images.length - 1 : this.currentIndex - 1;
+                console.log(`getPrevIndex: current=${this.currentIndex}, prev=${prevIdx}`);
+                return prevIdx;
             }
 
             getNextIndex() {
-                return this.currentIndex === this.images.length - 1 ? 0 : this.currentIndex + 1;
+                // Loop back to first image when on last image
+                const nextIdx = this.currentIndex === this.images.length - 1 ? 0 : this.currentIndex + 1;
+                console.log(`getNextIndex: current=${this.currentIndex}, next=${nextIdx}, total=${this.images.length}`);
+                return nextIdx;
             }
 
             goToPrev() {
                 if (this.images.length <= 1) return;
-                
+
+                const oldIndex = this.currentIndex;
                 this.currentIndex = this.getPrevIndex();
+                console.log(`goToPrev: ${oldIndex + 1} -> ${this.currentIndex + 1} (looped: ${this.currentIndex === this.images.length - 1})`);
                 this.updateSlidePositions();
                 this.updateCounter();
-                console.log('Moved to previous slide:', this.currentIndex + 1);
             }
 
             goToNext() {
                 if (this.images.length <= 1) return;
-                
+
+                const oldIndex = this.currentIndex;
                 this.currentIndex = this.getNextIndex();
+                console.log(`goToNext: ${oldIndex + 1} -> ${this.currentIndex + 1} (looped: ${this.currentIndex === 0})`);
                 this.updateSlidePositions();
                 this.updateCounter();
-                console.log('Moved to next slide:', this.currentIndex + 1);
             }
 
             updateCounter() {
                 if (this.counter && this.images.length > 0) {
                     this.counter.textContent = `${this.currentIndex + 1} / ${this.images.length}`;
                 }
+
+                // Update thumbnail active state
+                const thumbnails = document.querySelectorAll('.gallery-thumbnail');
+                thumbnails.forEach((thumb, index) => {
+                    thumb.classList.toggle('active', index === this.currentIndex);
+                });
             }
 
             // Public method to go to specific slide (for thumbnail integration)
@@ -1782,8 +1808,9 @@
             }
         }
 
-        // Initialize the new carousel
+        // Initialize the new carousel and expose globally
         const threeImageCarousel = new ThreeImageCarousel();
+        window.threeImageCarousel = threeImageCarousel;
 
         // Integration with existing gallery system
         window.addEventListener('load', () => {
