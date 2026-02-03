@@ -63,14 +63,24 @@
             --border-light: #f0f0f0;
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         .projects-page {
-            padding-top: 120px;
+            padding-top: 0;
+            margin: 0;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         .page-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 120px 2rem 0;
         }
 
         /* Header Section */
@@ -132,9 +142,14 @@
 
         /* Full Width Projects Grid Wrapper - Zigzag layout */
         .projects-grid-wrapper {
-            width: 100%;
+            width: 100vw;
             margin: 0;
             padding: 0;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
         }
 
         /* Desktop full-width layout */
@@ -202,75 +217,75 @@
             display: none !important;
         }
 
-        /* Zigzag pattern - clean alternating layout, no overlaps */
+        /* Zigzag pattern - clean alternating layout, touching edges */
 
-        /* Project 1 (Luxury Gym) - Landscape, Left-aligned */
+        /* Project 1 (Luxury Gym) - Landscape, Left-aligned to edge */
         .project-card:nth-child(1) {
             align-self: flex-start;
-            margin-left: 5vw;
+            margin-left: 0;
             width: 70vw;
         }
 
-        /* Project 2 (Joshua Tree) - Square, Right-aligned */
+        /* Project 2 (Joshua Tree) - Square, Right-aligned to edge */
         .project-card:nth-child(2) {
             align-self: flex-end;
-            margin-right: 8vw;
+            margin-right: 0;
             width: 55vw;
         }
 
-        /* Project 3 (Single Family) - Wide landscape, Left-aligned, dramatic */
+        /* Project 3 (Single Family) - Wide landscape, Left-aligned to edge, dramatic */
         .project-card:nth-child(3) {
             align-self: flex-start;
-            margin-left: 10vw;
+            margin-left: 0;
             width: 78vw;
         }
 
-        /* Project 4 (Expansion ADU) - Nearly square, Right-aligned */
+        /* Project 4 (Expansion ADU) - Nearly square, Right-aligned to edge */
         .project-card:nth-child(4) {
             align-self: flex-end;
-            margin-right: 5vw;
+            margin-right: 0;
             width: 58vw;
         }
 
-        /* Project 5 (Multiple Unit) - Portrait, Left-aligned, narrow */
+        /* Project 5 (Multiple Unit) - Portrait, Left-aligned to edge, narrow */
         .project-card:nth-child(5) {
             align-self: flex-start;
-            margin-left: 15vw;
+            margin-left: 0;
             width: 42vw;
         }
 
-        /* Project 6 (Duplex) - Landscape, Right-aligned */
+        /* Project 6 (Duplex) - Landscape, Right-aligned to edge */
         .project-card:nth-child(6) {
             align-self: flex-end;
-            margin-right: 10vw;
+            margin-right: 0;
             width: 68vw;
         }
 
-        /* Project 7 (Family Renovation) - Vertical portrait, Left-aligned, narrow */
+        /* Project 7 (Family Renovation) - Vertical portrait, Left-aligned to edge, narrow */
         .project-card:nth-child(7) {
             align-self: flex-start;
-            margin-left: 8vw;
+            margin-left: 0;
             width: 38vw;
         }
 
-        /* Project 8 (Customized ADU) - Square, Right-aligned */
+        /* Project 8 (Customized ADU) - Square, Right-aligned to edge */
         .project-card:nth-child(8) {
             align-self: flex-end;
-            margin-right: 12vw;
+            margin-right: 0;
             width: 56vw;
         }
 
-        /* Project 9 (Office TI) - Extra wide landscape, Left-aligned, dramatic */
+        /* Project 9 (Office TI) - Extra wide landscape, Left-aligned to edge, dramatic */
         .project-card:nth-child(9) {
             align-self: flex-start;
-            margin-left: 5vw;
+            margin-left: 0;
             width: 80vw;
         }
 
-        /* Project 10 - Portrait, Right-aligned */
+        /* Project 10 - Portrait, Right-aligned to edge */
         .project-card:nth-child(10) {
             align-self: flex-end;
-            margin-right: 15vw;
+            margin-right: 0;
             width: 48vw;
         }
 
