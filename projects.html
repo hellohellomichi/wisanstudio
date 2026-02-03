@@ -204,7 +204,9 @@
             cursor: pointer;
             opacity: 1;
             transform: translateY(0);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                        opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                        z-index 0s 0.8s; /* delay z-index change until animations complete */
             width: auto;
             max-width: 90vw;
             display: flex;
@@ -359,8 +361,9 @@
             overflow: hidden;
             border-radius: 0;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: box-shadow 0.8s cubic-bezier(0.19, 1, 0.22, 1);
             isolation: isolate; /* Create stacking context for overlay */
+            transform: none; /* No transform by default - inherits parent rotation naturally */
         }
 
         .project-card:hover .project-image {
@@ -456,7 +459,8 @@
             .project-card {
                 opacity: 0;
                 transform: translateY(80px);
-                transition: opacity 0.8s ease, transform 0.8s ease;
+                transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1),
+                            transform 1s cubic-bezier(0.19, 1, 0.22, 1);
             }
 
             .project-card.visible {
@@ -464,27 +468,18 @@
                 transform: translateY(0);
             }
 
-            /* Subtle rotations for asymmetry - applied after animation */
-            .project-card.visible:nth-child(2) {
-                transform: translateY(0) rotate(-0.5deg);
+            /* All cards perfectly straight - no rotation */
+            .project-card.visible {
+                transform: translateY(0) rotate(0deg);
             }
 
-            .project-card.visible:nth-child(5) {
-                transform: translateY(0) rotate(0.8deg);
-            }
-
-            .project-card.visible:nth-child(7) {
-                transform: translateY(0) rotate(-0.4deg);
-            }
-
-            .project-card.visible:nth-child(9) {
-                transform: translateY(0) rotate(0.6deg);
-            }
-
-            /* Dynamic hover effects */
+            /* Dynamic hover effects - perfectly vertical zoom */
             .project-card:hover {
-                transform: translateY(-15px) scale(1.01) rotate(0deg) !important;
+                transform: translateY(-10px) scale(1.015) !important;
                 z-index: 15;
+                transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                            opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                            z-index 0s 0s; /* no delay on hover - z-index changes immediately */
             }
         }
 
@@ -494,7 +489,8 @@
             object-fit: cover; /* Crop intelligently to fill space */
             object-position: center;
             filter: grayscale(100%); /* Black and white by default on desktop */
-            transition: filter 0.4s ease, transform 0.4s ease;
+            transition: filter 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                        transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         /* Open Case Overlay */
@@ -508,7 +504,7 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
             pointer-events: none;
         }
 
@@ -529,7 +525,8 @@
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
             transform: translateY(30px) scale(0.9);
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+                        opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .open-case-text .line-wrapper {
@@ -583,8 +580,8 @@
         }
 
         .project-card:hover .project-image img {
-            filter: grayscale(0%) brightness(1.05) contrast(1.05);
-            transform: scale(1.02);
+            filter: grayscale(0%) brightness(1.03) contrast(1.02);
+            transform: scale(1.015); /* Very subtle zoom on hover */
         }
 
         .project-title {
