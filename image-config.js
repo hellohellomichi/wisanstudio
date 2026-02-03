@@ -72,9 +72,9 @@ const IMAGE_CONFIG = {
       location: 'Hollywood, CA',
       category: 'residential',
       folder: '4915 Elmwood 10 unit Apartment',
-      coverImage: '1.png',
+      coverImage: '1.jpg',
       images: [
-        '1.png', '2.png', '3.jpg', '4.jpg', '5.jpg'
+        '1.jpg', '2.png', '3.jpg', '4.jpg', '5.jpg'
       ]
     },
     
