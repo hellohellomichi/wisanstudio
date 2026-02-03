@@ -60,9 +60,9 @@ const IMAGE_CONFIG = {
       location: 'Santa Monica, CA',
       category: 'residential',
       folder: '205 Georgina Addition+ADU',
-      coverImage: '4.jpg',
+      coverImage: '1.png',
       images: [
-        '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'
+        '1.png', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'
       ]
     },
     

@@ -1145,6 +1145,8 @@
             overflow: visible;
             background: white;
             will-change: transform, opacity, width; /* Optimize for smooth animation */
+            backface-visibility: hidden; /* Prevent flickering */
+            transform-style: preserve-3d; /* Ensure smooth 3D transforms */
         }
 
         .gallery-modal .gallery-slide img {
@@ -1156,6 +1158,8 @@
             object-position: center;
             transition: filter 1.4s cubic-bezier(0.34, 0.16, 0.22, 1);
             will-change: filter; /* Optimize for smooth filter transition */
+            backface-visibility: hidden; /* Prevent flickering during transitions */
+            transform: translateZ(0); /* Force GPU acceleration for smooth rendering */
         }
         
         /* Previous slide - left side, medium size, grayscale */
