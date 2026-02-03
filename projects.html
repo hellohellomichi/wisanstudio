@@ -159,7 +159,7 @@
             }
 
             .projects-grid {
-                gap: 15vh; /* Dramatic vertical spacing */
+                gap: 0; /* Custom spacing per project */
                 padding: 10vh 0 20vh;
             }
         }
@@ -191,7 +191,7 @@
         .projects-grid {
             display: flex;
             flex-direction: column;
-            gap: 15vh; /* Vertical spacing between projects */
+            gap: 0; /* Remove default gap, use custom spacing */
             padding: 10vh 0 20vh;
             align-items: start;
             max-width: 100vw;
@@ -207,6 +207,50 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: auto;
             max-width: 90vw;
+            display: flex;
+            align-items: flex-start;
+            gap: 3vw;
+        }
+
+        /* Left-aligned cards: text on the right */
+        .project-card:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        /* Right-aligned cards: text on the left */
+        .project-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Project 6 (Duplex) - Text on left side, top aligned */
+        .project-card:nth-child(6) .project-info {
+            align-items: flex-end !important;
+            text-align: right !important;
+            align-self: flex-start !important;
+        }
+
+        /* Project 8 (Customized ADU) - Text on left, bottom aligned */
+        .project-card:nth-child(8) .project-info {
+            align-items: flex-end !important;
+            text-align: right !important;
+            align-self: flex-end !important;
+        }
+
+        /* Project 5 (Multiple Unit Apartment) - Text on right side */
+        .project-card:nth-child(5) {
+            flex-direction: row !important;
+        }
+
+        .project-card:nth-child(5) .project-info {
+            align-items: flex-start !important;
+            text-align: left !important;
+        }
+
+        /* Project 2 (Joshua Tree) - Keep text left of image but align to bottom */
+        .project-card:nth-child(2) .project-info {
+            align-items: flex-end !important;
+            text-align: right !important;
+            align-self: flex-end !important;
         }
 
         .project-card:hover {
@@ -217,83 +261,103 @@
             display: none !important;
         }
 
-        /* Zigzag pattern - clean alternating layout, touching edges */
+        /* Zigzag pattern - some side by side, downsized, no overlaps */
 
-        /* Project 1 (Luxury Gym) - Landscape, Left-aligned to edge */
+        /* Project 1 (Luxury Gym) - Landscape, Left side, standalone */
         .project-card:nth-child(1) {
             align-self: flex-start;
-            margin-left: 0;
-            width: 70vw;
+            margin: 5vh 0 8vh 0;
+        }
+        .project-card:nth-child(1) .project-image {
+            width: 50vw;
         }
 
-        /* Project 2 (Joshua Tree) - Square, Right-aligned to edge */
+        /* Project 2 (Joshua Tree) - Square, Right side, beside 3 */
         .project-card:nth-child(2) {
             align-self: flex-end;
-            margin-right: 0;
-            width: 55vw;
+            margin: -40vh 0 5vh 0; /* Positioned at 2/3 of Gym's height */
         }
-
-        /* Project 3 (Single Family) - Wide landscape, Left-aligned to edge, dramatic */
-        .project-card:nth-child(3) {
-            align-self: flex-start;
-            margin-left: 0;
-            width: 78vw;
-        }
-
-        /* Project 4 (Expansion ADU) - Nearly square, Right-aligned to edge */
-        .project-card:nth-child(4) {
-            align-self: flex-end;
-            margin-right: 0;
-            width: 58vw;
-        }
-
-        /* Project 5 (Multiple Unit) - Portrait, Left-aligned to edge, narrow */
-        .project-card:nth-child(5) {
-            align-self: flex-start;
-            margin-left: 0;
-            width: 42vw;
-        }
-
-        /* Project 6 (Duplex) - Landscape, Right-aligned to edge */
-        .project-card:nth-child(6) {
-            align-self: flex-end;
-            margin-right: 0;
-            width: 68vw;
-        }
-
-        /* Project 7 (Family Renovation) - Vertical portrait, Left-aligned to edge, narrow */
-        .project-card:nth-child(7) {
-            align-self: flex-start;
-            margin-left: 0;
+        .project-card:nth-child(2) .project-image {
             width: 38vw;
         }
 
-        /* Project 8 (Customized ADU) - Square, Right-aligned to edge */
+        /* Project 3 (Single Family) - Wide landscape, Left side, beside 2 */
+        .project-card:nth-child(3) {
+            align-self: flex-start;
+            margin: 12vh 0 10vh 0;
+        }
+        .project-card:nth-child(3) .project-image {
+            width: 58vw;
+        }
+
+        /* Project 4 (Expansion ADU) - Right side, standalone */
+        .project-card:nth-child(4) {
+            align-self: flex-end;
+            margin: 8vh 0 12vh 0;
+        }
+        .project-card:nth-child(4) .project-image {
+            width: 45vw;
+        }
+
+        /* Project 5 (Multiple Unit) - Portrait, Left side, beside 6 */
+        .project-card:nth-child(5) {
+            align-self: flex-start;
+            margin: 6vh 0 8vh 0;
+        }
+        .project-card:nth-child(5) .project-image {
+            width: 32vw;
+        }
+
+        /* Project 6 (Duplex) - Landscape, Right side, beside 5 */
+        .project-card:nth-child(6) {
+            align-self: flex-end;
+            margin: -25vh 0 10vh 0; /* Positioned at 2/3 of apartment height */
+        }
+        .project-card:nth-child(6) .project-image {
+            width: 55vw;
+        }
+
+        /* Project 7 (Family Renovation) - Vertical portrait, Left side, standalone */
+        .project-card:nth-child(7) {
+            align-self: flex-start;
+            margin: 15vh 0 12vh 0;
+        }
+        .project-card:nth-child(7) .project-image {
+            width: 28vw;
+        }
+
+        /* Project 8 (Customized ADU) - Square, Right side, beside 9 */
         .project-card:nth-child(8) {
             align-self: flex-end;
-            margin-right: 0;
-            width: 56vw;
+            margin: -40vh 0 8vh 0; /* Positioned at 1/2 of Family Renovation height */
+        }
+        .project-card:nth-child(8) .project-image {
+            width: 42vw;
         }
 
-        /* Project 9 (Office TI) - Extra wide landscape, Left-aligned to edge, dramatic */
+        /* Project 9 (Office TI) - Wide landscape, Left side, beside 8 */
         .project-card:nth-child(9) {
             align-self: flex-start;
-            margin-left: 0;
-            width: 80vw;
+            margin: 10vh 0 12vh 0;
+        }
+        .project-card:nth-child(9) .project-image {
+            width: 55vw;
         }
 
-        /* Project 10 - Portrait, Right-aligned to edge */
+        /* Project 10 - Portrait, Right side, standalone */
         .project-card:nth-child(10) {
             align-self: flex-end;
-            margin-right: 0;
-            width: 48vw;
+            margin: 8vh 0 5vh 0;
+        }
+        .project-card:nth-child(10) .project-image {
+            width: 35vw;
         }
 
         .project-image {
-            width: 100%;
+            flex-shrink: 0;
             position: relative;
             overflow: hidden;
-            border-radius: 12px;
+            border-radius: 0;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             isolation: isolate; /* Create stacking context for overlay */
@@ -301,89 +365,89 @@
 
         .project-card:hover .project-image {
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-            border-radius: 16px;
+            border-radius: 0;
         }
 
-        /* Mixed aspect ratios - respecting original orientations */
+        /* Mixed aspect ratios - downsized but respecting original orientations */
 
         /* Project 1 (Luxury Gym) - Landscape */
         .project-card:nth-child(1) .project-image {
             aspect-ratio: 1.4 / 1;
             height: auto;
-            min-height: 55vh;
-            max-height: 85vh;
+            min-height: 45vh;
+            max-height: 65vh;
         }
 
-        /* Project 2 (Joshua Tree) - Square */
+        /* Project 2 (Joshua Tree) - Square, beside 3 */
         .project-card:nth-child(2) .project-image {
             aspect-ratio: 1 / 1;
             height: auto;
-            min-height: 50vh;
-            max-height: 70vh;
+            min-height: 40vh;
+            max-height: 60vh;
         }
 
-        /* Project 3 (Single Family+ADU) - Wide landscape, dramatic */
+        /* Project 3 (Single Family+ADU) - Wide landscape, beside 2 */
         .project-card:nth-child(3) .project-image {
             aspect-ratio: 1.5 / 1;
             height: auto;
-            min-height: 60vh;
-            max-height: 90vh;
+            min-height: 48vh;
+            max-height: 68vh;
         }
 
         /* Project 4 (Expansion ADU) - Nearly square */
         .project-card:nth-child(4) .project-image {
             aspect-ratio: 1.1 / 1;
             height: auto;
-            min-height: 50vh;
-            max-height: 75vh;
+            min-height: 42vh;
+            max-height: 62vh;
         }
 
-        /* Project 5 (Multiple Unit) - Portrait */
+        /* Project 5 (Multiple Unit) - Portrait, beside 6 */
         .project-card:nth-child(5) .project-image {
             aspect-ratio: 0.75 / 1;
             height: auto;
-            min-height: 65vh;
-            max-height: 92vh;
+            min-height: 55vh;
+            max-height: 75vh;
         }
 
-        /* Project 6 (Duplex) - Landscape */
+        /* Project 6 (Duplex) - Landscape, beside 5 */
         .project-card:nth-child(6) .project-image {
             aspect-ratio: 1.3 / 1;
             height: auto;
-            min-height: 55vh;
-            max-height: 80vh;
+            min-height: 48vh;
+            max-height: 68vh;
         }
 
         /* Project 7 (Family Renovation) - Vertical portrait */
         .project-card:nth-child(7) .project-image {
             aspect-ratio: 0.65 / 1;
             height: auto;
-            min-height: 70vh;
-            max-height: 95vh;
+            min-height: 60vh;
+            max-height: 85vh;
         }
 
-        /* Project 8 (Customized ADU) - Square */
+        /* Project 8 (Customized ADU) - Square, beside 9 */
         .project-card:nth-child(8) .project-image {
             aspect-ratio: 1 / 1;
             height: auto;
-            min-height: 55vh;
-            max-height: 80vh;
+            min-height: 45vh;
+            max-height: 65vh;
         }
 
-        /* Project 9 (Office TI) - Wide landscape, dramatic */
+        /* Project 9 (Office TI) - Wide landscape, beside 8 */
         .project-card:nth-child(9) .project-image {
             aspect-ratio: 1.6 / 1;
             height: auto;
-            min-height: 60vh;
-            max-height: 88vh;
+            min-height: 50vh;
+            max-height: 70vh;
         }
 
         /* Project 10 - Portrait */
         .project-card:nth-child(10) .project-image {
             aspect-ratio: 0.8 / 1;
             height: auto;
-            min-height: 60vh;
-            max-height: 85vh;
+            min-height: 50vh;
+            max-height: 70vh;
         }
 
         /* Enhanced zigzag asymmetric effects */
@@ -430,12 +494,7 @@
             object-fit: cover; /* Crop intelligently to fill space */
             object-position: center;
             filter: grayscale(15%); /* Subtle desaturation */
-            transition: filter 0.5s ease, transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image img {
-            filter: grayscale(0%) brightness(1.05) contrast(1.1);
-            transform: scale(1.05); /* Subtle zoom on hover */
+            transition: filter 0.4s ease, transform 0.4s ease;
         }
 
         /* Open Case Overlay */
@@ -501,50 +560,51 @@
         }
 
         .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 100%;
-            padding: 2.5rem 2rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.4) 100%);
-            color: white;
-            transform: translateY(100%);
-            opacity: 0;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
+            position: relative;
+            padding: 2rem 0;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            box-sizing: border-box;
+            justify-content: center;
+            min-width: 200px;
+            max-width: 300px;
+            flex-shrink: 0;
         }
 
-        .project-card:hover .project-info {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
+        /* Left-aligned cards: text aligns left */
+        .project-card:nth-child(odd) .project-info {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        /* Right-aligned cards: text aligns right */
+        .project-card:nth-child(even) .project-info {
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .project-card:hover .project-image img {
+            filter: grayscale(0%) brightness(1.05) contrast(1.05);
+            transform: scale(1.02);
         }
 
         .project-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.6rem;
-            color: white;
+            letter-spacing: 3px;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
             font-family: 'Poppins', sans-serif;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
             line-height: 1.3;
         }
 
         .project-area {
-            font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
             font-family: 'Outfit', sans-serif;
-            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         /* Responsive Design */
@@ -571,26 +631,29 @@
                 align-self: flex-start !important;
                 margin-left: 5vw !important;
                 margin-right: 0 !important;
-                width: 80vw !important;
             }
 
             .project-card:nth-child(even) {
                 align-self: flex-end !important;
                 margin-right: 5vw !important;
                 margin-left: 0 !important;
+            }
+
+            .project-card:nth-child(odd) .project-image,
+            .project-card:nth-child(even) .project-image {
                 width: 80vw !important;
             }
 
             /* Portrait images narrower on tablet */
-            .project-card:nth-child(5),
-            .project-card:nth-child(7),
-            .project-card:nth-child(10) {
+            .project-card:nth-child(5) .project-image,
+            .project-card:nth-child(7) .project-image,
+            .project-card:nth-child(10) .project-image {
                 width: 65vw !important;
             }
 
             /* Wide landscape images wider on tablet */
-            .project-card:nth-child(3),
-            .project-card:nth-child(9) {
+            .project-card:nth-child(3) .project-image,
+            .project-card:nth-child(9) .project-image {
                 width: 88vw !important;
             }
 
@@ -617,6 +680,24 @@
                 aspect-ratio: 1.3 / 1 !important;
                 min-height: 50vh !important;
                 max-height: 70vh !important;
+            }
+
+            /* Stack layout vertically on tablet */
+            .project-card {
+                flex-direction: column !important;
+                gap: 0 !important;
+            }
+
+            .project-image {
+                width: 100% !important;
+            }
+
+            .project-info {
+                min-width: auto !important;
+                max-width: none !important;
+                padding: 1.5rem 0 !important;
+                align-items: flex-start !important;
+                text-align: left !important;
             }
         }
 
@@ -751,6 +832,17 @@
                 padding: 1.5rem 0 !important;
                 margin: 0 !important;
                 min-height: auto !important;
+                width: 100% !important;
+                min-width: auto !important;
+                max-width: none !important;
+            }
+
+            .project-card {
+                flex-direction: column !important;
+                gap: 0 !important;
+            }
+
+            .project-image {
                 width: 100% !important;
             }
 
