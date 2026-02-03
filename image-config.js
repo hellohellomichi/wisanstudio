@@ -115,7 +115,7 @@ const IMAGE_CONFIG = {
     },
     
     'tenant-improvement': {
-      title: 'Dessert TI',
+      title: 'Commercial TI',
       description: 'A modern tenant improvement project in Anaheim that transforms a commercial space into a stylish dessert restaurant. This design creates an inviting atmosphere with contemporary finishes, efficient kitchen layouts, and customer-focused dining areas that enhance the culinary experience.',
       location: 'Anaheim, CA',
       category: 'commercial',
