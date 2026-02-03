@@ -269,10 +269,10 @@ section {
 }
 
 .portfolio-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 6rem;
-    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2rem;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -280,13 +280,8 @@ section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 70%;
+    width: 100%;
     margin-bottom: 0;
-}
-
-.project-item:nth-child(even) {
-    align-self: flex-end;
-    align-items: flex-end;
 }
 
 .project-item h4 {
