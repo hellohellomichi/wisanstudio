@@ -269,13 +269,24 @@ section {
 }
 
 .portfolio-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .project-item {
-    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70%;
+    margin-bottom: 0;
+}
+
+.project-item:nth-child(even) {
+    align-self: flex-end;
+    align-items: flex-end;
 }
 
 .project-item h4 {
